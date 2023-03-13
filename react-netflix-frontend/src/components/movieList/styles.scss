@@ -1,0 +1,31 @@
+.movieList {
+  //   display: flex;
+  //   align-items: flex-start;
+  //   flex-direction: column;
+  //   gap: 10px;
+  width: 100%;
+  .listTitle {
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 50px;
+   // margin-bottom: 20px;
+  }
+  .listWrapper {
+    position: relative;
+    margin: 10px 0;
+    .items {
+      margin-left: 50px;
+      display: flex;
+      width: max-content;
+    }
+    .arrowkey {
+      // margin-left: 50px;
+      position: absolute;
+      /* align-items: center; */
+      top: 0%;
+      height: 100%;
+      width: 100%;
+    }
+  }
+}

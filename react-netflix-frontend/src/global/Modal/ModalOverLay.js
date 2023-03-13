@@ -1,4 +1,6 @@
 
+import { Close } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import './modal.scss'
@@ -15,7 +17,7 @@ const ModalOverLay = ({ Content, ClassName }) => {
                             <Content></Content>
                         </div>
                         <div className="modalClose">
-                            <button className="btn  btn-primary" onClick={showHideModal}>X</button>
+                            <IconButton className="btn btn-primary" onClick={showHideModal}><Close/></IconButton>
                         </div>
                     </div>
                 </div>

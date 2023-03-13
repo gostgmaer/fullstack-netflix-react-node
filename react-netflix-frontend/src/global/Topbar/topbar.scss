@@ -1,0 +1,47 @@
+.topbar {
+  color: white;
+  font-size: 14px;
+  width: 100%;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  padding: 10px 0;
+  background: linear-gradient(to top, transparent 0%, rgba(0, 0, 0, 0.358) 50%);
+
+  .topbarContainer {
+    
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+
+    .left {
+      img {
+        height: 35px;
+      }
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 50px;
+      .headerItems {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+      }
+    }
+
+    .right {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+      select {
+        padding: 5px;
+        height: 36.5px;
+        width: 150px;
+      }
+    }
+  }
+}
