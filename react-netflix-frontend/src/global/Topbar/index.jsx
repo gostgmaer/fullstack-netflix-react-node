@@ -40,7 +40,8 @@ const Topbar = () => {
     setAnchorEl(null);
   };
   window.onscroll = () => {
-    window.pageYOffset >= 200 ? setIsscrolled(true):setIsscrolled(false);
+   setIsscrolled( window.pageYOffset >= 50?true:false)
+   return ()=>window.onscroll=null
   };
 
   return (
