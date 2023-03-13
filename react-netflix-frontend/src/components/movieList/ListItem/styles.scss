@@ -1,7 +1,203 @@
-.Listitem{
-    width: 225px;
-    height: 120px;
-    background-color: rgb(0, 0, 0);
-   
+.Listitem {
+  width: 225px;
+  height: 200px;
+  background-color: #141414;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 1;
+  border-radius: 8px;
+  // overflow: hidden;
 
+  .content {
+    width: 100%;
+    border-radius: 8px;
+    background-color: #141414;
+    .contentWrapper {
+      border-radius: 8px;
+      position: relative;
+      img {
+        border-radius: 8px 8px 0 0;
+        width: 100%;
+        object-fit: cover;
+        height: 150px;
+      }
+      .imageOverlay{
+       // margin: 0 10px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        position: absolute;
+        bottom: 20px;
+        .MuiIconButton-root {
+          background-color: white;
+          color: black;
+          width: 30px;
+          height: 30px;
+        }
+
+      }
+    }
+  }
+  &:hover {
+    // transform: scale(1.5);
+    width: 360px;
+    height: 320px;
+    z-index: 9;
+    .contentWrapper {
+       
+        img {
+        
+          height: 200px;
+        }
+      }
+  }
 }
+
+.itemInfo {
+  border-radius: 8px;
+  width: 100%;
+  background-color: #141414;
+
+  .infoWrapper {
+    border-radius: 8px;
+    padding: 20px 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    color: #fff;
+    flex-direction: column;
+  }
+  .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    .leftIcon {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .MuiIconButton-root {
+      background-color: white;
+      color: black;
+      width: 30px;
+      height: 30px;
+    }
+  }
+  .quality {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-transform: capitalize;
+    gap: 10px;
+
+    font-weight: 500;
+    .age {
+      padding: 1px 5px;
+
+      border: 1px solid gray;
+    }
+    .quality {
+      padding: 1px 5px;
+
+      font-size: 14px;
+      border: 1px solid gray;
+    }
+    .match {
+      color: green;
+    }
+  }
+  .reasons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    text-transform: capitalize;
+  }
+}
+
+// .listItem {
+//     width: 225px;
+//     height: 120px;
+//     background-color: var(--mainColor);
+//     margin-right: 5px;
+//     overflow: hidden;
+//     cursor: pointer;
+//     color: white;
+
+//     img {
+//       width: 100%;
+//       height: 100%;
+//       object-fit: cover;
+//     }
+
+//     video {
+//       width: 100%;
+//       height: 140px;
+//       object-fit: cover;
+//       position: absolute;
+//       top: 0;
+//       left: 0;
+//     }
+
+//     &:hover {
+//       width: 325px;
+//       height: 300px;
+//       position: absolute;
+//       top: -150px;
+//       -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
+//       box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
+//        border-radius: 8px;
+
+//       img {
+//         height: 140px;
+//       }
+
+//       .itemInfo {
+//         display: flex;
+//         flex-direction: column;
+//         padding: 5px;
+
+//         .icons {
+//           display: flex;
+//           margin-bottom: 10px;
+
+//           .icon {
+//             border: 2px solid white;
+//             padding: 5px;
+//             border-radius: 50%;
+//             margin-right: 10px;
+//             font-size: 16px;
+//           }
+//         }
+//         .itemInfoTop {
+//           display: flex;
+//           align-items: center;
+//           margin-bottom: 10px;
+//           font-size: 14px;
+//           font-weight: 600;
+//           color: gray;
+
+//           .limit {
+//             border: 1px solid gray;
+//             padding: 1px 3px;
+//             margin: 0 10px;
+//           }
+//         }
+
+//         .desc {
+//           font-size: 13px;
+//           margin-bottom: 10px;
+//         }
+
+//         .genre {
+//           font-size: 14px;
+//           color: lightgray;
+//         }
+//       }
+//     }
+//   }

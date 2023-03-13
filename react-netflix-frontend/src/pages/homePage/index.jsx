@@ -14,11 +14,26 @@ const Homepage = () => {
     <div className="Homepage">
       <Topbar />
       <Featured type={undefined}></Featured>
+
+      <MovieList />
+
+      
+      <MovieList />
+      
+      <MovieList />
+
+      
+      <MovieList />
+      
+      <MovieList />
+      
+      <MovieList />
+      
       <MovieList />
       <MovieList />
+      
       <MovieList />
-      <MovieList />
-      <MovieList />
+      
     </div>
   );
 };
