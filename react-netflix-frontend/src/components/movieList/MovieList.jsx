@@ -4,9 +4,10 @@ import {
   ArrowForward,
   ArrowForwardIos,
 } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
+import { Box, colors, IconButton } from "@mui/material";
 import React, { useRef, useState } from "react";
 import Listitem from "./ListItem/Listitem";
+import MovieListItem from "./ListItem/MovieListItem";
 import "./styles.scss";
 const MovieList = () => {
   const listref = useRef(null);
@@ -32,11 +33,11 @@ const MovieList = () => {
     let distance = listref.current.getBoundingClientRect().x - 50;
     if (direction === "left" && slideNumber > 0) {
       setSlideNumber(slideNumber - 1);
-      listref.current.style.transform = `translateX(${230 + distance}px)`;
+      listref.current.style.transform = `translateX(${230*5 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 5) {
+    if (direction === "right" && slideNumber < 1) {
       setSlideNumber(slideNumber + 1);
-      listref.current.style.transform = `translateX(${-230 + distance}px)`;
+      listref.current.style.transform = `translateX(${-230*5 + distance}px)`;
     }
   };
 
@@ -44,66 +45,51 @@ const MovieList = () => {
     <div className="movieList">
       <span className="listTitle">Continue to Watch</span>
       <div className="listWrapper">
-      {ismoved && (
-            <IconButton sx={{zIndex:'101'}} onClick={() => handleClick("left")}>
-              <ArrowBackIos />
-            </IconButton>
-          )}
+        {ismoved && (
+          <IconButton
+            sx={{
+              zIndex: "101",
+              position: "absolute",
+              color: "white",
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+            onClick={() => handleClick("left")}
+          >
+            <ArrowBackIos />
+          </IconButton>
+        )}
         <Box
           ref={listref}
           className="items"
           sx={{ display: "flex", gap: "5px" }}
         >
-         
-          <Listitem />
-
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-          <Listitem />
-
-          
+         <MovieListItem  index={0} />
+         <MovieListItem  index={1} />
+         <MovieListItem  index={2} />
+         <MovieListItem  index={3} />
+         <MovieListItem  index={4} />
+         <MovieListItem  index={5} />
+         <MovieListItem  index={6} />
+         <MovieListItem  index={7} />
+         <MovieListItem  index={8} />
+         <MovieListItem  index={9} />
         </Box>
-        {/* <Box
+
+        <IconButton
           sx={{
-            display: "flex",
-            justifyContent: ismoved ? "space-between" : "flex-end",
-            alignItems: "center",
+            zIndex: 101,
+            position: "absolute",
             color: "white",
-            "& .MuiIconButton-root": {
-              // color:'white !important',
-              borderRadius: "0",
-              backgroundColor: "#00000024",
-              height: "100%",
-              "& .MuiSvgIcon-root": {
-                width: "30px",
-                height: "30px",
-              },
-              "&:hover": {
-                color: "white !important",
-                "& .MuiSvgIcon-root": {
-                  display: "block",
-                },
-              },
-            },
+            top: 0,
+            bottom: 0,
+            right: 0,
           }}
-          className="arrowkey"
+          onClick={() => handleClick("right")}
         >
-         
-         
-        </Box> */}
-        <IconButton sx={{zIndex:9999}} onClick={() => handleClick("right")}>
-            <ArrowForwardIos />
-          </IconButton>
+          <ArrowForwardIos />
+        </IconButton>
       </div>
     </div>
   );

@@ -7,6 +7,7 @@ import "./home.scss";
 import { Box } from "@mui/material";
 import Featured from "../../components/featured";
 import MovieList from "../../components/movieList/MovieList";
+import MovieListItem from "../../components/movieList/ListItem/MovieListItem";
 
 const Homepage = () => {
   const { showHideModal } = useGlobalAppContext();
@@ -14,26 +15,11 @@ const Homepage = () => {
     <div className="Homepage">
       <Topbar />
       <Featured type={undefined}></Featured>
-
       <MovieList />
-
-      
+      <MovieList /> 
+      <MovieList /> 
       <MovieList />
-      
-      <MovieList />
-
-      
-      <MovieList />
-      
-      <MovieList />
-      
-      <MovieList />
-      
-      <MovieList />
-      <MovieList />
-      
-      <MovieList />
-      
+       <MovieList />
     </div>
   );
 };
