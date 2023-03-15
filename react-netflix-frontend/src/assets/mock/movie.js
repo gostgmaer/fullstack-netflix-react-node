@@ -498,8 +498,7 @@ export const configurationDB = {
     ]
 }
 
-export const genres = {
-    "genres": [
+export const genres =  [
         {
             "id": 28,
             "name": "Action"
@@ -577,7 +576,6 @@ export const genres = {
             "name": "Western"
         }
     ]
-}
 export const singleMovie = {
     "adult": false,
     "backdrop_path": "/pxJbfnMIQQxCrdeLD0zQnWr6ouL.jpg",
@@ -652,3 +650,26 @@ export const singleMovie = {
         ]
     }
 }
+
+
+
+
+// export const newArray = console.log(configurationDB.change_keys.keys);
+
+export const operationArray = (second) => {
+    console.log(configurationDB.change_keys.keys);
+}
+
+
+export const FirstOperationArray = (second) => {
+    const array = configurationDB.change_keys
+        .map((key, val) => {
+            return {
+                key: val,
+                val: key,
+            };
+        })
+    console.log(array);
+    return genres.filter(f => movie?.results[0]?.genre_ids.some(item => item === f.id))
+}
+export let newObjkeyArray = FirstOperationArray()

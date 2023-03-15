@@ -1,5 +1,6 @@
 import React from 'react'
 import { useGlobalAppContext } from '../../context/AppGlobalContent'
+import Aboutmovie from './Aboutmovie'
 import Details from './Details'
 import MoreList from './MoreList'
 import './style.scss'
@@ -12,9 +13,15 @@ const Moviedetails = () => {
 
   return (
     <div className='Moviedetails'>
-    <VideoContent/>
+   <div className="video">
+   <VideoContent/>
+   </div>
+    <div className="contentElements">
     <Details/>
     <MoreList/>
+    <Aboutmovie/>
+    </div>
+   
     </div>
   )
 }

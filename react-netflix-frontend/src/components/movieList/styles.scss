@@ -3,12 +3,14 @@
   //   align-items: flex-start;
   //   flex-direction: column;
   //   gap: 10px;
+  margin: 10px 0;
   width: 100%;
   .listTitle {
-    color: white;
+    color: white !important;
     font-size: 20px;
     font-weight: 500;
-    margin-left: 50px;
+    margin-left: 50px !important;
+    
    // margin-bottom: 20px;
   }
   .listWrapper {
