@@ -93,3 +93,19 @@
     }
   }
 }
+
+.genres{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  span {
+    color: #7c7c7c !important;
+  }
+  ul {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+  }
+}

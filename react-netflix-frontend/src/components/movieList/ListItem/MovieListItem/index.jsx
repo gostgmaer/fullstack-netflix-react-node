@@ -17,7 +17,8 @@ import { useGlobalAppContext } from "../../../../context/AppGlobalContent";
 import ReactPortal from "../../../../global/Modal/ReactPortal";
 import Moviedetails from "../../../Details/Moviedetails";
 import ReactPlayer from "react-player";
-import { configurationDB, operationArray } from "../../../../assets/mock/movie";
+import { configurationDB, genres, operationArray } from "../../../../assets/mock/movie";
+
 
 export default function MovieListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -40,12 +41,13 @@ export default function MovieListItem({ index, item }) {
     console.log(e);
   };
   // console.log(operationArray());
-  let newObjArray;
-  const first = (second) => {
-    configurationDB.change_keys.forEach((key, val) => {
-      console.log(key);
-    });
-  };
+  // let newObjArray = configurationDB.change_keys.map((key, val) => {
+  //   return {
+  //     key: val,
+  //     val: key,
+  //   };
+  // });
+  // console.log(newObjArray);
 
   const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
@@ -112,9 +114,10 @@ export default function MovieListItem({ index, item }) {
               <div className="genres">
                 <span>Genres : </span>
                 <ul>
-                  {/* {(configurationDB.change_keys.filter(item=>item)).map((item) => (
-                    <li key={item.id}>{item.name}, </li>
-                  ))} */}
+                  {genres.filter((i) => item.genre_ids.some(item => item === i.id))
+                    .map((j) => (
+                      <li key={j.ID}>{j.name}, </li>
+                    ))}
                 </ul>
               </div>
             </div>

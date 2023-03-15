@@ -8,10 +8,10 @@ import { Box } from "@mui/material";
 import Featured from "../../components/featured";
 import MovieList from "../../components/movieList/MovieList";
 import MovieListItem from "../../components/movieList/ListItem/MovieListItem";
-import {  newObjkeyArray } from "../../assets/mock/movie";
+import {  FirstOperationArray, newObjkeyArray } from "../../assets/mock/movie";
 
 const Homepage = () => {
-  console.log(newObjkeyArray);
+  console.log(FirstOperationArray());
   const { showHideModal } = useGlobalAppContext();
   return (
     <div className="Homepage">
