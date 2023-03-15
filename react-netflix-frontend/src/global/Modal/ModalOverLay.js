@@ -5,11 +5,11 @@ import React, { useState } from "react";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import './modal.scss'
 
-const ModalOverLay = ({ Content, ClassName }) => {
+const ModalOverLay = ({ Content, ClassName, btnColor }) => {
     const { modal, showHideModal } = useGlobalAppContext()
 
     return (
-        <div style={modal ? { display: "block" } : {}} className="modal-overlay">
+        <div style={modal ? { display: "block", zIndex: '9999' } : {}} className="modal-overlay">
             {modal && (
                 <div className={`modal-overlay-Wrapper ${ClassName}`}>
                     <div className="modalInner">
@@ -17,7 +17,7 @@ const ModalOverLay = ({ Content, ClassName }) => {
                             <Content></Content>
                         </div>
                         <div className="modalClose">
-                            <IconButton className="btn btn-primary" onClick={showHideModal}><Close/></IconButton>
+                            <IconButton sx={{ color: btnColor }} className="btn btn-primary" onClick={showHideModal}><Close /></IconButton>
                         </div>
                     </div>
                 </div>

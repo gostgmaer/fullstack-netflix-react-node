@@ -10,7 +10,7 @@ const Watch = () => {
 const navigate= useNavigate()
 
 const backhandle =()=>{
-    navigate('/home');
+    navigate('/');
     console.log(navigate);
 }
 

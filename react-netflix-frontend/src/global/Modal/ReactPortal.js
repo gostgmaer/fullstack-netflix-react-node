@@ -4,11 +4,11 @@ import ReactDOM from "react-dom";
 import ModalOverLay from "./ModalOverLay";
 import "./modal.scss";
 
-const ReactPortal = ({ModalContent,ClassName}) => {
+const ReactPortal = ({ModalContent,ClassName,color}) => {
   return (
     <Fragment>
       {ReactDOM.createPortal(
-        <ModalOverLay ClassName={ClassName}  Content={ModalContent}></ModalOverLay>,
+        <ModalOverLay ClassName={ClassName} btnColor={color}  Content={ModalContent}></ModalOverLay>,
         document.getElementById("modal")
       )}
     </Fragment>

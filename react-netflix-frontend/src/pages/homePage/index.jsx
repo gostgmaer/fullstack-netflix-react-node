@@ -16,10 +16,7 @@ const Homepage = () => {
       <Topbar />
       <Featured type={undefined}></Featured>
       <MovieList />
-      <MovieList /> 
-      <MovieList /> 
-      <MovieList />
-       <MovieList />
+      
     </div>
   );
 };
