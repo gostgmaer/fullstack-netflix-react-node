@@ -652,3 +652,21 @@ export const singleMovie = {
         ]
     }
 }
+
+
+
+
+// export const newArray = console.log(configurationDB.change_keys.keys);
+
+export const operationArray = (second) => {
+    console.log(configurationDB.change_keys.keys);
+}
+export let newObjkeyArray = configurationDB.change_keys
+newObjkeyArray.map((val, key) => {
+        return { key: key, val: val }
+    })
+export const FirstOperationArray = (second) => {
+    newObjkeyArray.map((val, key) => {
+        return { key: key, val: val }
+    })
+};

@@ -1,0 +1,297 @@
+.MoreList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  .title {
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .elements {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    .MovieItem {
+      width: 32.5%;
+      height: 360px;
+      background-color: #2f2f2f;
+      border-radius: 5px;
+      overflow: hidden;
+      color: #fff;
+      .imageContainer {
+        position: relative;
+        &:hover {
+          .bottonPlay {
+            display: flex;
+          }
+        }
+        .bottonPlay {
+          display: none;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+
+          justify-content: center;
+          align-items: center;
+          button {
+            background-color: #00000095;
+            color: white;
+          }
+        }
+        img {
+          height: 180px;
+          object-fit: cover;
+          width: 100%;
+        }
+      }
+      .content {
+        padding: 10px;
+        .top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+          margin-bottom: 10px;
+          .left {
+            .green {
+              color: green;
+            }
+          }
+          .right {
+            button {
+              border: 1.5px solid gray;
+              &:hover {
+                border: 1.5px solid white;
+                color: white;
+              }
+            }
+          }
+        }
+        .desc {
+        }
+      }
+    }
+  }
+  .loadmoreless {
+    position: relative;
+    margin-top: 20px;
+    height: 30px;
+    .MuiDivider-root {
+      border: 0.5px solid #fff;
+      color: #fff;
+      background: #fff;
+      height: 0;
+    }
+    .arrowBtn {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .MuiIconButton-root {
+      background-color: #00000072;
+      border: 1px solid #fff;
+    }
+  }
+}
+
+.contentElements {
+  margin: 10px 35px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 20px;
+
+  .age,
+  .quality {
+    padding: 1px 5px;
+    border: 1px solid white;
+  }
+  .Details {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    .left {
+      flex: 2.5;
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+      .matches {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-weight: 500;
+        gap: 10px;
+
+        strong {
+          color: green;
+        }
+      }
+      .description {
+      }
+    }
+    .right {
+      flex: 1.2;
+      .cast,
+      .genres {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        span {
+          color: #7c7c7c !important;
+        }
+        ul {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          flex-wrap: wrap;
+        }
+      }
+      // .genres{
+      //   ul{
+      //     display: flex;
+      //     align-items: center;
+      //     gap: 5px;
+      //   }
+      // }
+    }
+  }
+}
+.Moviedetails {
+  background-color: #181818;
+
+  color: white;
+  .MuiIconButton-root {
+    color: white;
+  }
+  .video {
+    .VideoContent {
+     background-color: black;
+      .content {
+        position: relative;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0) 20%,
+          rgb(0, 0, 0) 100%
+        );
+        img {
+          height: 420px;
+          object-fit: cover;
+        // background-color: #181818;
+          opacity: 0.7;
+          width: 100%;
+        //  opacity: 1;
+         
+        }
+        .controller {
+          position: relative;
+          margin: 0 40px;
+          .text {
+            position: absolute;
+            bottom: 200px;
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+
+            span {
+              font-size: 20px;
+              margin-left: 10px !important;
+              &:last-child {
+                font-size: 32px;
+                font-weight: bold;
+                margin-left: 0 !important;
+              }
+            }
+          }
+          .icons {
+            position: absolute;
+            bottom: 80px;
+            width: 100%;
+            .MuiIconButton-root {
+              background-color: #18181869;
+              border: 1px solid rgb(184, 184, 184);
+              color: rgb(189, 189, 189);
+              &:hover {
+                background-color: #18181869;
+                border: 1px solid white;
+                color: white;
+              }
+            }
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .leftIcon {
+              display: flex;
+              align-items: center;
+              justify-content: flex-start;
+              gap: 5px;
+            }
+            .right {
+            }
+          }
+        }
+        .closeIcon {
+          position: absolute;
+          top: 10px;
+          right: 20px;
+          button {
+            background-color: #181818;
+          }
+        }
+      }
+    }
+  }
+}
+.video {
+  .MuiButton-root {
+    background-color: white;
+    color: #181818;
+    &:hover {
+      background-color: white;
+      color: #181818;
+    }
+  }
+}
+
+
+.movieInfo{
+  .modalClose{
+    display: none !important;
+  }
+}
+
+.Aboutmovie{
+
+  .title{
+
+  }
+  .contentDetails{
+
+    .director{
+
+    }
+    .cast,.writter,.genres,.exciting,.director{
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        color: #7c7c7c !important;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

@@ -6,13 +6,16 @@ import {
 } from "@mui/icons-material";
 import { Box, colors, IconButton } from "@mui/material";
 import React, { useRef, useState } from "react";
+import { FirstOperationArray, movie } from "../../assets/mock/movie";
 import Listitem from "./ListItem/Listitem";
 import MovieListItem from "./ListItem/MovieListItem";
 import "./styles.scss";
-const MovieList = () => {
+const MovieList = ({ heading }) => {
   const listref = useRef(null);
   const [slideNumber, setSlideNumber] = useState(0);
   const [ismoved, setIsmoved] = useState(false);
+
+  console.log(movie.results.length / 5);
 
   const handleArrow = (direction) => {
     let distance = listref.current.getBoundingClientRect().x - 50;
@@ -28,22 +31,23 @@ const MovieList = () => {
     }
   };
 
+
   const handleClick = (direction) => {
     setIsmoved(true);
     let distance = listref.current.getBoundingClientRect().x - 50;
     if (direction === "left" && slideNumber > 0) {
       setSlideNumber(slideNumber - 1);
-      listref.current.style.transform = `translateX(${230*5 + distance}px)`;
+      listref.current.style.transform = `translateX(${230 * 5 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < 1) {
+    if (direction === "right" && slideNumber < movie.results.length / 5 - 1) {
       setSlideNumber(slideNumber + 1);
-      listref.current.style.transform = `translateX(${-230*5 + distance}px)`;
+      listref.current.style.transform = `translateX(${-230 * 5 + distance}px)`;
     }
   };
 
   return (
     <div className="movieList">
-      <span className="listTitle">Continue to Watch</span>
+      <span className="listTitle">{heading}</span>
       <div className="listWrapper">
         {ismoved && (
           <IconButton
@@ -65,16 +69,9 @@ const MovieList = () => {
           className="items"
           sx={{ display: "flex", gap: "5px" }}
         >
-         <MovieListItem  index={0} />
-         <MovieListItem  index={1} />
-         <MovieListItem  index={2} />
-         <MovieListItem  index={3} />
-         <MovieListItem  index={4} />
-         <MovieListItem  index={5} />
-         <MovieListItem  index={6} />
-         <MovieListItem  index={7} />
-         <MovieListItem  index={8} />
-         <MovieListItem  index={9} />
+          {movie.results.slice(0, 20).map((item, index) => (
+            <MovieListItem key={item.id} item={item} index={index} />
+          ))}
         </Box>
 
         <IconButton

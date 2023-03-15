@@ -3,23 +3,25 @@ import {
   Close,
   PlayArrow,
   ThumbUp,
+  VolumeDown,
   VolumeMute,
+  VolumeOff,
   VolumeUp,
 } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import "./style.scss";
 const VideoContent = () => {
-
-    const { modal, showHideModal } = useGlobalAppContext();
-    const trailer =
+  const { modal, showHideModal } = useGlobalAppContext();
+  const [mute, setMute] = useState(false);
+  const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
   return (
     <div className="VideoContent">
       <div className="content">
-     <img src="./assets/images/modalImg.webp" alt="" />
+        <img src="./assets/images/modalImg.webp" alt="" />
         <div className="controller">
           <div className="text">
             <span>The</span> <span>Walking Dead</span>
@@ -36,12 +38,10 @@ const VideoContent = () => {
               </IconButton>
             </div>
             <div className="right">
-              <IconButton>
-                <VolumeMute />
+              <IconButton onClick={()=>setMute(!mute)}>
+               {mute? <VolumeOff />: <VolumeUp />}
               </IconButton>
-              <IconButton>
-                <VolumeUp />
-              </IconButton>
+             
             </div>
           </div>
         </div>

@@ -1,32 +1,38 @@
-import { PlayArrow } from "@mui/icons-material";
+import { Add, PlayArrow } from "@mui/icons-material";
 import { IconButton } from "@mui/material";
+import moment from "moment/moment";
 import React from "react";
+import { configurationDB } from "../../assets/mock/movie";
 
-const MovieItem = () => {
+const MovieItem = ({item}) => {
   return (
     <div className="MovieItem">
       <div className="imageContainer">
-        <img src="./assets/images/modalImg.webp" alt="" />
+        <img src={`${configurationDB.images.base_url}/${configurationDB.images.poster_sizes[3]}${item.poster_path}`} alt="" />
         <div className="text"></div>
+        <div className="bottonPlay">
         <IconButton className="playicon">
           <PlayArrow />
         </IconButton>
+        </div>
+       
+       
       </div>
       <div className="content">
         <div className="top">
           <div className="left">
-            <strong color="green">75% Match</strong>{" "}
+            <strong className="green">75% Match</strong>{" "}
             <div>
-              <span>A</span>
-              {new Date().getFullYear()}
+              <span className="age">U/A 13+</span>
+             <span> {moment(item.release_date).format('YYYY')}</span>
             </div>
+          </div>
+          <div className="right">
+            <IconButton><Add/></IconButton>
           </div>
         </div>
         <div className="desc">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores
-          magni obcaecati sapiente similique excepturi iusto, velit fugit
-          possimus dolore totam eaque, ratione vel. Sint, architecto quo? Quos,
-          non sequi. Odio?
+         {`${item.overview.substring(0,160)} ...`}
         </div>
       </div>
     </div>
