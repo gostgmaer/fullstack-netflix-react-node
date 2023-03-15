@@ -26,6 +26,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { language } from "../../assets/mock/staticData";
+import { useGlobalAuthContext } from "../../context/auth/Authcontext";
 import "./topbar.scss";
 const Topbar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -44,6 +45,13 @@ const Topbar = () => {
    return ()=>window.onscroll=null
   };
 
+
+  const { user, setUser, LoginEvent,logOutEvent } = useGlobalAuthContext();
+
+const handleLogoutButton = (second) => { 
+  logOutEvent()
+  handleClose()
+ }
   return (
     <div
       className="topbar"
@@ -178,7 +186,7 @@ const Topbar = () => {
                 </ListItemIcon>
                 Settings
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem onClick={handleLogoutButton}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
