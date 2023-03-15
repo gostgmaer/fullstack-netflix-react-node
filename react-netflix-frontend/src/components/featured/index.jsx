@@ -3,7 +3,17 @@ import { Box, Button, Stack } from "@mui/material";
 import React from "react";
 import "./style.scss";
 import App from "./../../App";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
+import ReactPortal from "../../global/Modal/ReactPortal";
+
+import Moviedetails from "../Details/Moviedetails";
 const Featured = ({type}) => {
+  const { modal, showHideModal } = useGlobalAppContext()
+
+const handleinfo = (second) => { 
+  
+ }
+
   return (
     <Box sx={{ position: "relative" }} className="Featured">
      {type && (
@@ -66,7 +76,7 @@ const Featured = ({type}) => {
           >
             Play
           </Button>
-          <Button
+          <Button onClick={showHideModal}
             sx={{
               backgroundColor: "rgba(109, 109, 110, 0.7)",
               color: "white",
@@ -82,6 +92,7 @@ const Featured = ({type}) => {
           >
             More Info
           </Button>
+          {modal && <ReactPortal ClassName={'movieInfo'} ModalContent={Moviedetails} color={'#fff'} />}
         </Stack>
       </Box>
     </Box>
