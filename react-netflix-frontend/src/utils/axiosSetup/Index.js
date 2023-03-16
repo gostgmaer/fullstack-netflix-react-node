@@ -19,7 +19,6 @@ const InvokeAPI = async (
     data: body,
   };
   let response;
-  console.log(option);
   try {
     response = await axios.request(option);
   } catch (e) {

@@ -1,28 +1,24 @@
 import "./styles.scss";
 
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import React from "react";
 import {
   Add,
-  ArrowDropDown,
   KeyboardArrowDown,
   PlayArrow,
-  ThumbDownOutlined,
   ThumbUp,
-  ThumbUpAltOutlined,
 } from "@mui/icons-material";
-import { Box, Button, IconButton, Tooltip } from "@mui/material";
+import { Box, Button, IconButton, Skeleton, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useGlobalAppContext } from "../../../../context/AppGlobalContent";
 import ReactPortal from "../../../../global/Modal/ReactPortal";
 import Moviedetails from "../../../Details/Moviedetails";
-import ReactPlayer from "react-player";
 import { configurationDB, genres } from "../../../../assets/mock/movie";
 
 
 export default function MovieListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { modal, showHideModal,getMovieInfo,infoMovie } = useGlobalAppContext();
+  const { modal,loader,setModal, showHideModal,getMovieInfo,infoMovie } = useGlobalAppContext();
   
   const navigate = useNavigate();
 
@@ -32,10 +28,6 @@ export default function MovieListItem({ index, item }) {
     // console.log(navigate);
   };
 
-  const handleModalOpen = (second) => {
-    showHideModal();
-    setIsHovered(false);
-  };
 
   const handleLike = (e) => {
     console.log(e);
@@ -49,7 +41,8 @@ export default function MovieListItem({ index, item }) {
   const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
   return (
-    <div
+  <Fragment>
+    {loader? <div></div>:  <div
       className="listItem"
       style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
       onMouseEnter={() => setIsHovered(true)}
@@ -113,7 +106,7 @@ export default function MovieListItem({ index, item }) {
                 <ul>
                   {genres.filter((i) => item.genre_ids.some(item => item === i.id))
                     .map((j) => (
-                      <li key={j.ID}>{j.name}, </li>
+                      <li key={j.id}>{j.name}, </li>
                     ))}
                 </ul>
               </div>
@@ -121,6 +114,7 @@ export default function MovieListItem({ index, item }) {
           </div>
         </>
       )}
-    </div>
+    </div>}
+  </Fragment>
   );
 }
