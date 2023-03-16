@@ -8,7 +8,7 @@ const MovieItem = ({item}) => {
   return (
     <div className="MovieItem">
       <div className="imageContainer">
-        <img src={`${configurationDB.images.base_url}/${configurationDB.images.poster_sizes[3]}${item.poster_path}`} alt="" />
+        <img src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[3]}${item.backdrop_path?item.backdrop_path:item.poster_path}`} alt="" />
         <div className="text"></div>
         <div className="bottonPlay">
         <IconButton className="playicon">

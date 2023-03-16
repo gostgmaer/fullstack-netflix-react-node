@@ -175,29 +175,28 @@
   }
   .video {
     .VideoContent {
-     background-color: black;
+      background-color: rgba(0, 0, 0, 0.445);
       .content {
         position: relative;
         background: linear-gradient(
           to bottom,
-          rgba(0, 0, 0, 0) 20%,
+          rgba(255, 255, 255, 0.537) 0%,
           rgb(0, 0, 0) 100%
         );
         img {
-          height: 420px;
+          height: 510px;
           object-fit: cover;
-        // background-color: #181818;
-          opacity: 0.7;
+          // background-color: #181818;
+          opacity: 0.5;
           width: 100%;
-        //  opacity: 1;
-         
+          //  opacity: 1;
         }
         .controller {
           position: relative;
           margin: 0 40px;
           .text {
             position: absolute;
-            bottom: 200px;
+            bottom: 250px;
             display: flex;
             align-items: flex-start;
             flex-direction: column;
@@ -214,7 +213,7 @@
           }
           .icons {
             position: absolute;
-            bottom: 80px;
+            bottom: 180px;
             width: 100%;
             .MuiIconButton-root {
               background-color: #18181869;
@@ -262,24 +261,17 @@
   }
 }
 
-
-.movieInfo{
-  .modalClose{
-    display: none !important;
+.Aboutmovie {
+  .title {
   }
-}
-
-.Aboutmovie{
-
-  .title{
-
-  }
-  .contentDetails{
-
-    .director{
-
+  .contentDetails {
+    .director {
     }
-    .cast,.writter,.genres,.exciting,.director{
+    .cast,
+    .writter,
+    .genres,
+    .exciting,
+    .director {
       display: flex;
       align-items: center;
       gap: 5px;
@@ -293,5 +285,72 @@
         flex-wrap: wrap;
       }
     }
+  }
+}
+.Details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgb(0, 0, 0) 100%
+  );
+  padding: 10px 35px;
+  //  padding-bottom: 10px;
+  position: absolute;
+  bottom: 0;
+  gap: 20px;
+  .left {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(0, 0, 0) 100%
+    );
+    flex: 2.5;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    .matches {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-weight: 500;
+      gap: 10px;
+
+      strong {
+        color: green;
+      }
+    }
+    .description {
+    }
+  }
+  .right {
+    flex: 1.2;
+   
+ 
+    .cast,
+    .genres {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      span {
+        color: #7c7c7c !important;
+      }
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+      }
+    }
+    // .genres{
+    //   ul{
+    //     display: flex;
+    //     align-items: center;
+    //     gap: 5px;
+    //   }
+    // }
   }
 }

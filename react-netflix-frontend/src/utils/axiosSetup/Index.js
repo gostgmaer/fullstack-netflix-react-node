@@ -1,20 +1,21 @@
 import axios from "axios";
-import { baseURL, token } from "../../services/settings";
+import { baseURL, queryString, token } from "../../services/settings";
 
 const InvokeAPI = async (
   endpoint,
   type,
   body,
   headerParams,
-  queryParam
+  query
 ) => {
+
 
   const headerObj = { Authorization: `bearer ${token}` }
   const option = {
     method: type,
     url: baseURL + endpoint,
-    headers: { ...headerObj,...headerParams},
-    params: queryParam,
+    headers: { ...headerObj, ...headerParams },
+    params: { ...queryString, ...query },
     data: body,
   };
   let response;

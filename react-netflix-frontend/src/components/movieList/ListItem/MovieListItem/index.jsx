@@ -17,13 +17,13 @@ import { useGlobalAppContext } from "../../../../context/AppGlobalContent";
 import ReactPortal from "../../../../global/Modal/ReactPortal";
 import Moviedetails from "../../../Details/Moviedetails";
 import ReactPlayer from "react-player";
-import { configurationDB, genres, operationArray } from "../../../../assets/mock/movie";
+import { configurationDB, genres } from "../../../../assets/mock/movie";
 
 
 export default function MovieListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { modal, showHideModal } = useGlobalAppContext();
-
+  const { modal, showHideModal,getMovieInfo,infoMovie } = useGlobalAppContext();
+  
   const navigate = useNavigate();
 
   const handleWatch = () => {
@@ -40,14 +40,11 @@ export default function MovieListItem({ index, item }) {
   const handleLike = (e) => {
     console.log(e);
   };
-  // console.log(operationArray());
-  // let newObjArray = configurationDB.change_keys.map((key, val) => {
-  //   return {
-  //     key: val,
-  //     val: key,
-  //   };
-  // });
-  // console.log(newObjArray);
+  const MovieInfoget = (id) => { 
+    showHideModal()
+    getMovieInfo(id)
+   }
+ 
 
   const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
@@ -60,7 +57,7 @@ export default function MovieListItem({ index, item }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <img
-        src={`${configurationDB.images.base_url}/${configurationDB.images.poster_sizes[3]}${item.poster_path}`}
+        src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[2]}${item.backdrop_path}`}
         alt=""
       />
       {isHovered && (
@@ -91,7 +88,7 @@ export default function MovieListItem({ index, item }) {
                 </Box>
                 <Tooltip title="Add" placement="top-start" arrow>
                   <IconButton
-                    onClick={showHideModal}
+                    onClick={()=>MovieInfoget(item.id)}
                     sx={{ border: "1px solid grey" }}
                   >
                     <KeyboardArrowDown />

@@ -7,17 +7,19 @@ import {
 import { Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 import { movie } from "../../assets/mock/movie";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import MovieItem from "./MovieItem";
 
 const MoreList = () => {
   const [expandeValue, setExpandeValue] = useState(9);
+  const {getMovieInfo,infoMovie,similar}=useGlobalAppContext()
   return (
     <div className="MoreList">
       <div className="title">
         <h3>More like this: </h3>
       </div>
       <div className="elements">
-        {movie.results.slice(0, expandeValue).map((item) => (
+        {similar?.results.slice(0, expandeValue).map((item) => (
           <MovieItem key={item.id} item={item} />
         ))}
       </div>

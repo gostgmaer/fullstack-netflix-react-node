@@ -1,17 +1,25 @@
 import { MessageOutlined } from "@mui/icons-material";
 import { Button, IconButton, Tooltip } from "@mui/material";
+import moment from "moment";
 import React from "react";
 import { movie, singleMovie } from "../../assets/mock/movie";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
+import { millisecondsToStr } from "../../utils/custom/CustomFunctions";
 
 const Details = () => {
+
+  const {getMovieInfo,infoMovie,similar}=useGlobalAppContext()
+
+
+  console.log(similar);
   return (
     <div className="Details">
       <div className="left">
         <div className="matches">
           <strong>87% Match</strong>
-          <span>1995</span>
+          <span>{moment(infoMovie?.release_date).format('YYYY')}</span>
           <span className="age">U/A 16+</span>
-          <span>1h 49m</span>
+          <span>{millisecondsToStr(infoMovie?.runtime*60*1000)}</span>
           <span className="quality">HD</span>
           <Tooltip
             sx={{
@@ -28,10 +36,7 @@ const Details = () => {
           </Tooltip>
         </div>
         <div className="description">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, id.
-          Dicta reiciendis ex quisquam similique eum omnis suscipit aut
-          cupiditate voluptate consequatur deserunt, placeat magni blanditiis
-          iste sint laboriosam officia.
+         {`${infoMovie?.overview.substring(0,220)}...`}
         </div>
       </div>
       <div className="right">
@@ -44,7 +49,7 @@ const Details = () => {
         <div className="genres">
           <span>Genres : </span>
           <ul>
-            {singleMovie.genres.map((item) => (
+            {infoMovie?.genres.map((item) => (
               <li key={item.id}>{item.name}, </li>
             ))}
           </ul>
