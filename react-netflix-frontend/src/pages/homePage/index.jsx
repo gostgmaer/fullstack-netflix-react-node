@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import ReactPortal from "../../global/Modal/ReactPortal";
 import Topbar from "../../global/Topbar";
@@ -11,15 +11,23 @@ import MovieListItem from "../../components/movieList/ListItem/MovieListItem";
 
 
 const Homepage = () => {
+  const {getTrendingMovie, trending,getPlayingNow,playingNow} = useGlobalAppContext()
+
+useEffect(() => {
+  getTrendingMovie()
+  getPlayingNow()
+  
+}, []);
+
 
   const { showHideModal } = useGlobalAppContext();
   return (
     <div className="Homepage">
       <Topbar />
       <Featured type={undefined}></Featured>
-      <MovieList heading={"Continue to Watch"} />
-      <MovieList heading={"Trending Now"} />
-      <MovieList heading={"TV Sci-Fi & Fantasy"} />
+      <MovieList heading={"Continue to Watch"} data={playingNow} />
+      <MovieList heading={"Trending Now"} data={trending} />
+      {/* <MovieList heading={"TV Sci-Fi & Fantasy"} />
       <MovieList heading={"Top Picks for kishor sarkar"} />
       <MovieList heading={"International Movies"} />
 
@@ -27,7 +35,7 @@ const Homepage = () => {
       <MovieList heading={"TBlockbuster Movies"} />
       <MovieList heading={"International TV Shows"} />
       <MovieList heading={"Exciting Movies"} />
-      <MovieList heading={"Popular on Netflix"} />
+      <MovieList heading={"Popular on Netflix"} /> */}
     </div>
   );
 };
