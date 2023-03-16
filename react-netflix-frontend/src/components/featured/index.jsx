@@ -136,7 +136,7 @@ const Featured = ({ type }) => {
           >
             More Info
           </Button>
-          <Loading/>
+       
           {modal && (
             <ReactPortal
               ClassName={"movieInfo"}

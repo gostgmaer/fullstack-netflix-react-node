@@ -1,12 +1,6 @@
-
-import './app.scss';
-
 import React from 'react'
-import { notifySuccess } from './utils/notify/Toster';
+import './app.scss';
 import { useGlobalAppContext } from './context/AppGlobalContent';
-import ReactPortal from './global/Modal/ReactPortal';
-import Homepage from './pages/homePage';
-import Topbar from './global/Topbar';
 import { useGlobalAuthContext } from './context/auth/Authcontext';
 import ProtectedRoute, { UnprotectedRoute } from './router/Router';
 import { useEffect } from 'react';
@@ -14,6 +8,7 @@ import Loading from './components/loader/Loading';
 
 const App = () => {
   const { user, setUser, LoginEvent } = useGlobalAuthContext();
+const {loader} = useGlobalAppContext()
 
   useEffect(() => {
     const userData = window.localStorage.getItem('isloggedIn')
@@ -24,8 +19,9 @@ const App = () => {
   const { showHideModal } = useGlobalAppContext()
   return (
     <div className="app">
-   
+
       {user ? <ProtectedRoute /> : <UnprotectedRoute />}
+     {<Loading/>}
     </div>
   )
 }

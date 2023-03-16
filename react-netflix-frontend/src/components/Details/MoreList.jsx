@@ -12,14 +12,27 @@ import MovieItem from "./MovieItem";
 
 const MoreList = () => {
   const [expandeValue, setExpandeValue] = useState(9);
-  const {getMovieInfo,infoMovie,similar}=useGlobalAppContext()
+  const { getMovieInfo, infoMovie, similar } = useGlobalAppContext();
+
+  const getUniqueBy = (arr, prop) => {
+    const set = new Set();
+    return arr?.filter((o) => !set.has(o[prop]) && set.add(o[prop]));
+  };
+
+  const setExpandeValueNine = (params) => {
+    setExpandeValue(9)
+  }
+  const setExpandeValueMore = (params) => {
+    setExpandeValue(18)
+  }
+  console.log(getUniqueBy(similar?.results, "id"));
   return (
     <div className="MoreList">
       <div className="title">
         <h3>More like this: </h3>
       </div>
       <div className="elements">
-        {similar?.results.slice(0, expandeValue).map((item) => (
+        {getUniqueBy(similar?.results, "id")?.slice(0, expandeValue).map((item) => (
           <MovieItem key={item.id} item={item} />
         ))}
       </div>
@@ -28,11 +41,11 @@ const MoreList = () => {
         <div className="arrowBtn">
           {" "}
           {expandeValue === 9 ? (
-            <IconButton onClick={() => setExpandeValue(18)}>
+            <IconButton onClick={setExpandeValueMore}>
               <KeyboardArrowDown />
             </IconButton>
           ) : (
-            <IconButton onClick={() => setExpandeValue(9)}>
+            <IconButton onClick={setExpandeValueNine}>
               <KeyboardArrowUp />
             </IconButton>
           )}

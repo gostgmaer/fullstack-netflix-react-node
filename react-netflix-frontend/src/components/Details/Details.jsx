@@ -7,9 +7,7 @@ import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import { millisecondsToStr } from "../../utils/custom/CustomFunctions";
 
 const Details = () => {
-
-  const {getMovieInfo,infoMovie,similar,credits}=useGlobalAppContext()
-
+  const { getMovieInfo, infoMovie, similar, credits } = useGlobalAppContext();
 
   console.log(similar);
   return (
@@ -17,9 +15,9 @@ const Details = () => {
       <div className="left">
         <div className="matches">
           <strong>87% Match</strong>
-          <span>{moment(infoMovie?.release_date).format('YYYY')}</span>
+          <span>{moment(infoMovie?.release_date).format("YYYY")}</span>
           <span className="age">U/A 16+</span>
-          <span>{millisecondsToStr(infoMovie?.runtime*60*1000)}</span>
+          <span>{millisecondsToStr(infoMovie?.runtime * 60 * 1000)}</span>
           <span className="quality">HD</span>
           <Tooltip
             sx={{
@@ -36,18 +34,21 @@ const Details = () => {
           </Tooltip>
         </div>
         <div className="description">
-         {`${infoMovie?.overview.substring(0,220)}...`}
+          {`${infoMovie?.overview.substring(0, 220)}...`}
         </div>
       </div>
       <div className="right">
         <div className="cast">
           <span>Cast: </span>
           <ul>
-          <ul>
-            {(credits?.cast?.sort((a, b) => b.popularity - a.popularity))?.slice(0,3)?.map((item) => (
-              <li key={item.id}>{item.name}, </li>
-            ))}
-          </ul>
+            <ul>
+              {credits?.cast
+                ?.sort((a, b) => b.popularity - a.popularity)
+                ?.slice(0, 3)
+                ?.map((item) => (
+                  <li key={item.id}>{item.name}, </li>
+                ))}
+            </ul>
           </ul>
         </div>
         <div className="genres">

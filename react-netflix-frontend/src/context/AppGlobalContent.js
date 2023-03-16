@@ -5,6 +5,7 @@ const AppContext = React.createContext(null);
 const AppProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
   const [loader, setLoader] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
   const [movieID, setMovieID] = useState(null);
   const [infoMovie, setInfoMovie] = useState(null);
   const [similar, setSimilar] = useState(null);
@@ -81,7 +82,7 @@ const AppProvider = ({ children }) => {
   const getLatestMovie = async () => {
     setLoader(true);
     try {
-      const query = { language: "en-US",  page: 1 };
+      const query = { language: "en-US", page: 1 };
       cleanQueryparam(query);
       const res = await InvokeAPI(`movie/latest`, "get", {}, {}, query);
       setLatestMovie(res);
@@ -89,7 +90,7 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const getPopularMovie = async () => {
     setLoader(true);
     try {
@@ -101,7 +102,7 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const getTopRatedMovie = async () => {
     setLoader(true);
     try {
@@ -113,7 +114,7 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const getupcomingMovie = async () => {
     setLoader(true);
     try {
@@ -125,6 +126,16 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
     setLoader(false);
+  };
+  const GetgaterogywiseMovie = async (grnre) => {
+    setLoader(true);
+    const query = { language: "en-US", page: 1, with_genres: grnre };
+    cleanQueryparam(query);
+    const res = await InvokeAPI(`discover/movie`, "get", {}, {}, query);
+    // res.results.filter((item)=>item.backdrop_path!==null || item.poster_path!==null)
+    setLoader(false);
+    return res
+
   }
 
   return (
@@ -142,7 +153,14 @@ const AppProvider = ({ children }) => {
         trending,
         getPlayingNow,
         playingNow,
-        getLatestMovie,latestMovie,getupcomingMovie,upcommingMovie,getPopularMovie,popular,getTopRatedMovie,topRatedMovie
+        getLatestMovie,
+        latestMovie,
+        getupcomingMovie,
+        upcommingMovie,
+        getPopularMovie,
+        popular,openModal,
+        getTopRatedMovie,
+        topRatedMovie, GetgaterogywiseMovie,setModal
       }}
     >
       {children}

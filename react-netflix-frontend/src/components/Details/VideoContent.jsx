@@ -16,7 +16,7 @@ import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import Details from "./Details";
 import "./style.scss";
 const VideoContent = () => {
-  const { modal, showHideModal,infoMovie } = useGlobalAppContext();
+  const { modal, showHideModal, infoMovie } = useGlobalAppContext();
 
   const [mute, setMute] = useState(false);
   const trailer =
@@ -24,7 +24,10 @@ const VideoContent = () => {
   return (
     <div className="VideoContent">
       <div className="content">
-        <img src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[2]}${infoMovie?.backdrop_path}`} alt={infoMovie?.title} />
+        <img
+          src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[2]}${infoMovie?.backdrop_path}`}
+          alt={infoMovie?.title}
+        />
         <div className="controller">
           <div className="text">
             <span>{infoMovie?.title}</span>
@@ -52,7 +55,7 @@ const VideoContent = () => {
             <Close />
           </IconButton>
         </div>
-        <Details/>
+        <Details />
       </div>
     </div>
   );
