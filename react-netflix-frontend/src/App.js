@@ -10,6 +10,7 @@ import Topbar from './global/Topbar';
 import { useGlobalAuthContext } from './context/auth/Authcontext';
 import ProtectedRoute, { UnprotectedRoute } from './router/Router';
 import { useEffect } from 'react';
+import Loading from './components/loader/Loading';
 
 const App = () => {
   const { user, setUser, LoginEvent } = useGlobalAuthContext();
@@ -23,7 +24,7 @@ const App = () => {
   const { showHideModal } = useGlobalAppContext()
   return (
     <div className="app">
-
+   
       {user ? <ProtectedRoute /> : <UnprotectedRoute />}
     </div>
   )

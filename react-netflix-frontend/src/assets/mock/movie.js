@@ -656,20 +656,20 @@ export const singleMovie = {
 
 // export const newArray = console.log(configurationDB.change_keys.keys);
 
-export const operationArray = (second) => {
-    console.log(configurationDB.change_keys.keys);
-}
+// export const operationArray = (second) => {
+//     console.log(configurationDB.change_keys.keys);
+// }
 
 
-export const FirstOperationArray = (second) => {
-    const array = configurationDB.change_keys
-        .map((key, val) => {
-            return {
-                key: val,
-                val: key,
-            };
-        })
-    console.log(array);
-    return genres.filter(f => movie?.results[0]?.genre_ids.some(item => item === f.id))
-}
-export let newObjkeyArray = FirstOperationArray()
+// export const FirstOperationArray = (second) => {
+//     const array = configurationDB.change_keys
+//         .map((key, val) => {
+//             return {
+//                 key: val,
+//                 val: key,
+//             };
+//         })
+//     console.log(array);
+//     return genres.filter(f => movie?.results[0]?.genre_ids.some(item => item === f.id))
+// }
+// export let newObjkeyArray = FirstOperationArray()

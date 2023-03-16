@@ -6,7 +6,7 @@ import {
 } from "@mui/icons-material";
 import { Box, colors, IconButton } from "@mui/material";
 import React, { useRef, useState } from "react";
-import { FirstOperationArray, movie } from "../../assets/mock/movie";
+import {  movie } from "../../assets/mock/movie";
 import Listitem from "./ListItem/Listitem";
 import MovieListItem from "./ListItem/MovieListItem";
 import "./styles.scss";
@@ -15,7 +15,7 @@ const MovieList = ({ heading }) => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [ismoved, setIsmoved] = useState(false);
 
-  console.log(movie.results.length / 5);
+
 
   const handleArrow = (direction) => {
     let distance = listref.current.getBoundingClientRect().x - 50;
@@ -70,7 +70,7 @@ const MovieList = ({ heading }) => {
           sx={{ display: "flex", gap: "5px" }}
         >
           {movie.results.slice(0, 20).map((item, index) => (
-            <MovieListItem key={item.id} item={item} index={index} />
+            <MovieListItem key={index} item={item} index={index} />
           ))}
         </Box>
 
