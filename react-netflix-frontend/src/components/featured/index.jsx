@@ -92,7 +92,7 @@ const Featured = ({ type }) => {
       <Box className="info" sx={{ position: "absolute" }}>
         <Typography variant="h2">{featureMovie?.title}</Typography>
 
-        <span className="desc">{featureMovie?.overview}</span>
+        <span className="desc">{`${featureMovie?.overview.substring(0,140)}...`}</span>
         <Stack
           direction="row"
           spacing={2}

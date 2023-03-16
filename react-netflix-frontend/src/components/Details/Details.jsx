@@ -8,7 +8,7 @@ import { millisecondsToStr } from "../../utils/custom/CustomFunctions";
 
 const Details = () => {
 
-  const {getMovieInfo,infoMovie,similar}=useGlobalAppContext()
+  const {getMovieInfo,infoMovie,similar,credits}=useGlobalAppContext()
 
 
   console.log(similar);
@@ -41,13 +41,17 @@ const Details = () => {
       </div>
       <div className="right">
         <div className="cast">
-          <span>Cast : </span>
+          <span>Cast: </span>
           <ul>
-            <li>cast</li>
+          <ul>
+            {(credits?.cast?.sort((a, b) => b.popularity - a.popularity))?.slice(0,3)?.map((item) => (
+              <li key={item.id}>{item.name}, </li>
+            ))}
+          </ul>
           </ul>
         </div>
         <div className="genres">
-          <span>Genres : </span>
+          <span>Genres: </span>
           <ul>
             {infoMovie?.genres.map((item) => (
               <li key={item.id}>{item.name}, </li>

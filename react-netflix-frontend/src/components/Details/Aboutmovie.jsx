@@ -1,12 +1,14 @@
 import React from "react";
 import { singleMovie } from "../../assets/mock/movie";
 import { string } from "yup";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
 
 const Aboutmovie = () => {
+  const {getMovieInfo,infoMovie,similar,credits}=useGlobalAppContext()
   return (
     <div className="Aboutmovie">
       <div className="title">
-        <h3>About {singleMovie.title}</h3>
+        <h3>About {infoMovie?.title}</h3>
       </div>
       <div className="contentDetails">
         {" "}
@@ -14,9 +16,9 @@ const Aboutmovie = () => {
           <span>Director:</span>
         </div>
         <div className="cast">
-          <span>Cast : </span>
+          <span>Cast: </span>
           <ul>
-            {singleMovie.genres.map((item) => (
+          {(credits?.cast?.sort((a, b) => b.popularity - a.popularity))?.slice(0,10)?.map((item) => (
               <li key={item.id}>{item.name}, </li>
             ))}
           </ul>

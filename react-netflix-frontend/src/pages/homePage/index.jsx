@@ -9,16 +9,31 @@ import Featured from "../../components/featured";
 import MovieList from "../../components/movieList/MovieList";
 import MovieListItem from "../../components/movieList/ListItem/MovieListItem";
 
-
 const Homepage = () => {
-  const {getTrendingMovie, trending,getPlayingNow,playingNow} = useGlobalAppContext()
+  const {
+    getTrendingMovie,
+    trending,
+    getPlayingNow,
+    playingNow,
+    getLatestMovie,
+    latestMovie,
+    getupcomingMovie,
+    upcommingMovie,
+    getPopularMovie,
+    popular,
+    getTopRatedMovie,
+    topRatedMovie,
+  } = useGlobalAppContext();
 
-useEffect(() => {
-  getTrendingMovie()
-  getPlayingNow()
-  
-}, []);
-
+  useEffect(() => {
+    getTrendingMovie();
+    getPlayingNow();
+    getLatestMovie();
+    getTopRatedMovie();
+    getupcomingMovie();
+    getPopularMovie();
+    console.log(latestMovie);
+  }, []);
 
   const { showHideModal } = useGlobalAppContext();
   return (
@@ -27,10 +42,12 @@ useEffect(() => {
       <Featured type={undefined}></Featured>
       <MovieList heading={"Continue to Watch"} data={playingNow} />
       <MovieList heading={"Trending Now"} data={trending} />
+      <MovieList heading={"Popular on Netflix"} data={popular} />
+      <MovieList heading={"Upcomming Movies"} data={upcommingMovie} />
+      <MovieList heading={"Top Rated"} data={topRatedMovie} />
       {/* <MovieList heading={"TV Sci-Fi & Fantasy"} />
       <MovieList heading={"Top Picks for kishor sarkar"} />
       <MovieList heading={"International Movies"} />
-
       <MovieList heading={"Continue Watching for kishor.sarkar.in"} />
       <MovieList heading={"TBlockbuster Movies"} />
       <MovieList heading={"International TV Shows"} />

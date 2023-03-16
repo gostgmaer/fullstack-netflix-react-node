@@ -113,7 +113,7 @@ export default function MovieListItem({ index, item }) {
                 <ul>
                   {genres.filter((i) => item.genre_ids.some(item => item === i.id))
                     .map((j) => (
-                      <li key={j.ID}>{j.name}, </li>
+                      <li key={j.id}>{j.name}, </li>
                     ))}
                 </ul>
               </div>

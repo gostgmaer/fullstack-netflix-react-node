@@ -36,7 +36,7 @@ const MovieList = ({ heading, data }) => {
       setSlideNumber(slideNumber - 1);
       listref.current.style.transform = `translateX(${230 * 5 + distance}px)`;
     }
-    if (direction === "right" && slideNumber < data?.results.length / 5 - 1) {
+    if (direction === "right" && slideNumber < data?.results?.length / 5 - 1) {
       setSlideNumber(slideNumber + 1);
       listref.current.style.transform = `translateX(${-230 * 5 + distance}px)`;
     }
@@ -66,8 +66,8 @@ const MovieList = ({ heading, data }) => {
           className="items"
           sx={{ display: "flex", gap: "5px" }}
         >
-          {data?.results.slice(0, 20).map((item, index) => (
-            <MovieListItem key={index} item={item} index={index} />
+          {data?.results?.slice(0, 20)?.map((item, index) => (
+            <MovieListItem key={item.id} item={item} index={index} />
           ))}
         </Box>
 
