@@ -1,5 +1,6 @@
 
 import { Fragment, useState } from "react";
+import './style.scss';
 import React from "react";
 import {
   Add,
@@ -7,7 +8,7 @@ import {
   PlayArrow,
   ThumbUp,
 } from "@mui/icons-material";
-import { Box, Button, IconButton, Skeleton, Tooltip } from "@mui/material";
+import { Box, Button, IconButton, Paper, Skeleton, styled, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import { configurationDB, genres } from "../../assets/mock/movie";
@@ -35,6 +36,13 @@ export default function CartItem({ index, item }) {
     showHideModal();
     getMovieInfo(id);
   };
+  const Item = styled(Paper)(({ theme }) => ({
+    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+    ...theme.typography.body2,
+    padding: theme.spacing(1),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }));
 
   const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
@@ -43,11 +51,11 @@ export default function CartItem({ index, item }) {
       {loader ? (
         <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
       ) : (
-        <div
-          className="listItem"
-          style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+        <Item
+          // className="listItem"
+          // style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+          // onMouseEnter={() => setIsHovered(true)}
+          // onMouseLeave={() => setIsHovered(false)}
         >
           <img
             src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[2]}${item.backdrop_path}`}
@@ -99,7 +107,7 @@ export default function CartItem({ index, item }) {
                     <ul>
                       {genres
                         .filter((i) =>
-                          item.genre_ids.some((item) => item === i.id)
+                          item?.genre_ids?.some((item) => item === i.id)
                         )
                         .map((j) => (
                           <li key={j.id}>{j.name}, </li>
@@ -117,7 +125,7 @@ export default function CartItem({ index, item }) {
               )}
             </>
           )}
-        </div>
+        </Item>
       )}
     </Fragment>
   );

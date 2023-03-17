@@ -57,7 +57,7 @@ const AppProvider = ({ children }) => {
   const searchMovieSerials = async (q) => {
     setLoader(true);
     try {
-      const query = { language: "en-US", page: 1, include_adult: true, query: q };
+      const query = { language: "en-US", page: 1, include_adult: false, query: q };
       cleanQueryparam(query);
       const res = await InvokeAPI(`search/multi`, "get", {}, {}, query);
       setSearchData(res);

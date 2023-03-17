@@ -8,10 +8,10 @@ const Keywords = () => {
   return (
     <div className="Keywords">
       <Typography variant="h5"> Explore Title Related to: </Typography>
-      <Box>
+      <Box className='itemsKey'>
         <ul>
           {keywordData?.results?.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>{item.name} |</li>
           ))}
         </ul>
       </Box>

@@ -10,25 +10,45 @@ import { keys } from "lodash";
 import React, { useEffect, useState } from "react";
 
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
+import InvokeAPI, { cleanQueryparam } from "../../utils/axiosSetup";
 
 const Episodes = () => {
-  const { episode, infoMovie, setSeriesEpisods, getAllEpisode, seriesEpisods } =
-    useGlobalAppContext();
- const [episodeData, setEpisodeData] = useState('1');
- const [iscall, setIscall] = useState(false);
+  const {
+    episode,
+    infoMovie,
+    setEpisode,
+   
+  } = useGlobalAppContext();
+  const [episodeData, setEpisodeData] = useState("1");
+  const [iscall, setIscall] = useState(false);
 
- const handleChangeSession = (e) => {
-  setEpisodeData(e.target.value)
-  setIscall(true)
- }
- 
-    useEffect(() => {
-  if (iscall) {
-    getAllEpisode(infoMovie?.id,episodeData)
-  }
-   }, [Number(episodeData)]);
+  const handleChangeSession = (e) => {
+    setEpisodeData(e.target.value);
+    setIscall(true);
+  };
 
- 
+  const getAllEpisode = async () => {
+    try {
+      const query = { language: "en-US" };
+      cleanQueryparam(query);
+      const res = await InvokeAPI(
+        `tv/${infoMovie?.id}/season/${episodeData}`,
+        "get",
+        {},
+        {},
+        query
+      );
+      setEpisode(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (iscall) {
+      getAllEpisode();
+    }
+  }, [Number(episodeData)]);
 
   console.log(episode);
   return (
@@ -37,7 +57,8 @@ const Episodes = () => {
         <h3>Episodes</h3>{" "}
         <FormControl fullWidth>
           <NativeSelect
-            defaultValue={1}
+          
+            value={Number(episodeData)}
             onChange={handleChangeSession}
             inputProps={{
               name: "age",
@@ -47,7 +68,9 @@ const Episodes = () => {
             {[...Array(infoMovie?.number_of_seasons).keys()].map((item) => {
               console.log(item);
               return (
-                <option key={item} value={item+1}>{`Session ${item+1}`}</option>
+                <option key={item} value={item + 1}>{`Session ${
+                  item + 1
+                }`}</option>
               );
             })}
           </NativeSelect>
