@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL, queryString, token } from "../../services/settings";
+import { baseURL, loginURL, queryString, token } from "../../services/settings";
 
 const InvokeAPI = async (
   endpoint,
@@ -10,12 +10,12 @@ const InvokeAPI = async (
 ) => {
 
 
-  const headerObj = { Authorization: `bearer ${token}` }
+  // const headerObj = { Authorization: `bearer ${token}` }
   const option = {
     method: type,
-    url: baseURL + endpoint,
-    headers: { ...headerObj, ...headerParams },
-    params: { ...queryString, ...query },
+    url: endpoint.startsWith('api/') ? loginURL+endpoint : baseURL + endpoint,
+    headers: headerParams,
+    params: endpoint.startsWith('api/') ? {} : { ...queryString, ...query },
     data: body,
   };
   let response;

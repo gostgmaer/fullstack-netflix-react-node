@@ -11,7 +11,7 @@ const navigate= useNavigate()
 
 const backhandle =()=>{
     navigate('/');
-    console.log(navigate);
+  
 }
 
   return (

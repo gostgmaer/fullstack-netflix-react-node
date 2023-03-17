@@ -25,14 +25,14 @@ const MoreList = () => {
   const setExpandeValueMore = (params) => {
     setExpandeValue(18)
   }
-  console.log(getUniqueBy(similar?.results, "id"));
+ 
   return (
     <div className="MoreList">
       <div className="title">
         <h3>More like this: </h3>
       </div>
       <div className="elements">
-        {getUniqueBy(similar?.results, "id")?.slice(0, expandeValue).map((item) => (
+        {getUniqueBy(similar?.results, "id")?.filter(item=>item.backdrop_path || item.poster_path)?.slice(0, expandeValue).map((item) => (
           <MovieItem key={item.id} item={item} />
         ))}
       </div>

@@ -9,7 +9,7 @@ const MovieItem = ({ item }) => {
   const { modal,loader, showHideModal,getMovieInfo,infoMovie } = useGlobalAppContext();
   return (
   <Fragment>
-    {loader? <Skeleton variant="rectangular" width={'32.5%'} height={'360px'} />:  <div className="MovieItem">
+    {loader? <Skeleton variant="rectangular" width={'32.5%'} height={'280px'} />:  <div className="MovieItem">
       <div className="imageContainer">
         <img
           src={`${configurationDB.images.base_url}/${
