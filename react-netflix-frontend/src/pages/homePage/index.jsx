@@ -25,7 +25,7 @@ const Homepage = () => {
     getTopRatedMovie,
     topRatedMovie,
     contentType,
-    setContentType,
+    setContentType,type, setType
   } = useGlobalAppContext();
   const [action, setAction] = useState(null);
   const [advanture, setAdvanture] = useState(null);
@@ -80,16 +80,20 @@ const Homepage = () => {
     callHorror();
     callMusic();
     callRomance();
+    
   }, [contentType]);
 
   const { showHideModal } = useGlobalAppContext();
   return (
     <div className="Homepage">
-      <Topbar />
-      <Featured type={undefined}></Featured>
-      {playingNow && (
-        <MovieList heading={"Continue to Watch"} data={playingNow} />
-      )}
+    
+      <Featured ></Featured>
+      {/* {playingNow && (
+        <MovieList heading={"Continue to Watch"} data={playingNow?.results.filter(item=>item.backdrop_path || item.poster_path)} />
+      )} */}
+      {playingNow && 
+        <MovieList heading={"Continue to Watch"} data={playingNow}/>}
+
       <MovieList heading={"Trending Now"} data={trending} />
       {latestMovie?.results && (
         <MovieList heading={"Latest on Netflix"} data={latestMovie} />

@@ -1,0 +1,82 @@
+.movieList {
+    //   display: flex;
+    //   align-items: flex-start;
+    //   flex-direction: column;
+    //   gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    .listTitle {
+      color: white !important;
+      font-size: 20px;
+      font-weight: 500;
+      margin-left: 50px !important;
+      //margin-bottom: 20px;
+      
+     // margin-bottom: 20px;
+    }
+    .listWrapper {
+      position: relative;
+      margin: 10px 0;
+      margin-top: 20px;
+      .items {
+        margin-left: 50px;
+        display: flex;
+        width: 100%;
+        width: max-content;
+        transform: translateX(0px);
+        transition: all 1s ease;
+      }
+      .arrowkey {
+        // margin-left: 50px;
+        position: absolute;
+        /* align-items: center; */
+        top: 0%;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+  
+  // .list {
+  //   width: 100%;
+  //   margin-top: 10px;
+  
+  //   .listTitle {
+  //     color: white;
+  //     font-size: 20px;
+  //     font-weight: 500;
+  //     margin-left: 50px;
+  //   }
+  
+  //   .wrapper {
+  //     position: relative;
+  //     .sliderArrow {
+  //       width: 50px;
+  //       height: 100%;
+  //       background-color: rgb(22, 22, 22, 0.5);
+  //       color: white;
+  //       position: absolute;
+  //       z-index: 99;
+  //       top: 0;
+  //       bottom: 0;
+  //       margin: auto;
+  //       cursor: pointer;
+  
+  //       &.left {
+  //         left: 0;
+  //       }
+  
+  //       &.right {
+  //         right: 0;
+  //       }
+  //     }
+  //     .container {
+  //       margin-left: 50px;
+  //       display: flex;
+  //       margin-top: 10px;
+  //       width: max-content;
+  //       transform: translateX(0px);
+  //       transition: all 1s ease;
+  //     }
+  //   }
+  // }

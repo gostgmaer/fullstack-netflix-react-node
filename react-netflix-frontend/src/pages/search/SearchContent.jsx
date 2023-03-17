@@ -1,9 +1,20 @@
-import React from 'react'
-
+import React from "react";
+import CartItemList from "../../components/CardItemList/CardItemList";
+import Topbar from "../../global/Topbar";
+import { useGlobalAppContext } from "./../../context/AppGlobalContent";
+import Keywords from "./keywords/Keywords";
+import "./style.scss";
 const SearchContent = () => {
-  return (
-    <div className='SearchContent'></div>
-  )
-}
+  const { searchMovieSerials, searchData, keywordData } = useGlobalAppContext();
 
-export default SearchContent
+  return (
+    <div className="SearchContent">
+      <div className="wrapper">
+        <Keywords />
+        <CartItemList></CartItemList>
+      </div>
+    </div>
+  );
+};
+
+export default SearchContent;

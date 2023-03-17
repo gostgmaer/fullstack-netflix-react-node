@@ -111,11 +111,6 @@
   gap: 20px;
   padding-bottom: 20px;
 
-  .age,
-  .quality {
-    padding: 1px 5px;
-    border: 1px solid white;
-  }
   .Details {
     display: flex;
     align-items: flex-start;
@@ -136,7 +131,11 @@
         justify-content: flex-start;
         font-weight: 500;
         gap: 10px;
-
+        .age,
+        .quality {
+          padding: 1px 5px;
+          border: 1px solid white;
+        }
         strong {
           color: green;
         }
@@ -181,16 +180,17 @@
   .video {
     .VideoContent {
       background-color: rgba(0, 0, 0, 0.445);
+      margin-bottom: 20px;
       .content {
         position: relative;
-        height: 610px;
+        height: 575px;
         background: linear-gradient(
           to bottom,
           rgba(255, 255, 255, 0.537) 0%,
           rgb(0, 0, 0) 100%
         );
         img {
-          height: 510px;
+          height: 575x;
           object-fit: cover;
           // background-color: #181818;
           opacity: 0.5;
@@ -301,12 +301,12 @@
   -webkit-box-shadow: 0px 0px 150px 50px rgba(0, 0, 0);
   -moz-box-shadow: 0px 0px 120px 50px rgba(0, 0, 0);
   box-shadow: 0px 0px 120px 50px rgba(0, 0, 0);
-//   -webkit-box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
-// -moz-box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
-// box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
+  //   -webkit-box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
+  // -moz-box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
+  // box-shadow: -3px -50px 50px 12px rgba(0,0,0,1);
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.74) 0%,
+    rgba(0, 0, 0, 0.79) 0%,
     rgb(0, 0, 0) 100%
   );
   border-color: #000000de;
@@ -314,14 +314,20 @@
   padding: 10px 35px;
   //  padding-bottom: 10px;
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
+  margin-bottom: 10px;
   gap: 20px;
+  .age,
+  .quality {
+    padding: 1px 5px;
+    border: 1px solid white;
+  }
   .left {
     flex: 2.5;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    gap: 20px;
+
     .matches {
       display: flex;
       align-items: center;
