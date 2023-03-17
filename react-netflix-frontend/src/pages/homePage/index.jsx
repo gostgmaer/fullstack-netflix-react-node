@@ -24,6 +24,8 @@ const Homepage = () => {
     popular,
     getTopRatedMovie,
     topRatedMovie,
+    contentType,
+    setContentType,
   } = useGlobalAppContext();
   const [action, setAction] = useState(null);
   const [advanture, setAdvanture] = useState(null);
@@ -62,9 +64,11 @@ const Homepage = () => {
     setMusic(res);
   };
 
+
+  
   useEffect(() => {
     getTrendingMovie();
-    getPlayingNow();
+    getPlayingNow()
     getLatestMovie();
     getTopRatedMovie();
     getupcomingMovie();
@@ -76,21 +80,32 @@ const Homepage = () => {
     callHorror();
     callMusic();
     callRomance();
-  }, []);
+  }, [contentType]);
 
   const { showHideModal } = useGlobalAppContext();
   return (
     <div className="Homepage">
       <Topbar />
       <Featured type={undefined}></Featured>
-      <MovieList heading={"Continue to Watch"} data={playingNow} />
+      {playingNow && (
+        <MovieList heading={"Continue to Watch"} data={playingNow} />
+      )}
       <MovieList heading={"Trending Now"} data={trending} />
+      {latestMovie?.results && (
+        <MovieList heading={"Latest on Netflix"} data={latestMovie} />
+      )}
       <MovieList heading={"Popular on Netflix"} data={popular} />
       <MovieList heading={"Upcomming Movies"} data={upcommingMovie} />
       <MovieList heading={"Top Rated"} data={topRatedMovie} />
-      <MovieList heading={"Action"} data={action} />
-      <MovieList heading={"Advanture"} data={advanture} />
-      <MovieList heading={"Horror"} data={horror} />{" "}
+      {action?.results.length !== 0 && (
+        <MovieList heading={"Action"} data={action} />
+      )}
+      {advanture?.results.length !== 0 && (
+        <MovieList heading={"Advanture"} data={advanture} />
+      )}
+      {horror?.results.length !== 0 && (
+        <MovieList heading={"Horror"} data={horror} />
+      )}
       <MovieList heading={"Romantic"} data={romance} />{" "}
       <MovieList heading={"Documentory"} data={documentory} />{" "}
       <MovieList heading={"Animation"} data={animation} />

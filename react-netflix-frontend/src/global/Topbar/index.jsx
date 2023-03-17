@@ -11,6 +11,8 @@ import {
 } from "@mui/icons-material";
 import {
   Avatar,
+  BottomNavigation,
+  BottomNavigationAction,
   Box,
   Button,
   Divider,
@@ -26,6 +28,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { language } from "../../assets/mock/staticData";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import { useGlobalAuthContext } from "../../context/auth/Authcontext";
 import "./topbar.scss";
 const Topbar = () => {
@@ -33,6 +36,14 @@ const Topbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isscrolled, setIsscrolled] = useState(false);
   const [scrollStyle, setScrollStyle] = useState(false);
+  const { user, setUser, LoginEvent, logOutEvent } = useGlobalAuthContext();
+  const { contentType, setContentType } = useGlobalAppContext();
+  const [value, setValue] = React.useState("home");
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,32 +52,50 @@ const Topbar = () => {
     setAnchorEl(null);
   };
   window.onscroll = () => {
-   setIsscrolled( window.pageYOffset >= 50?true:false)
-   return ()=>window.onscroll=null
+    setIsscrolled(window.pageYOffset >= 50 ? true : false);
+    return () => (window.onscroll = null);
   };
 
+  const handleLogoutButton = (second) => {
+    logOutEvent();
+    handleClose();
+  };
 
-  const { user, setUser, LoginEvent,logOutEvent } = useGlobalAuthContext();
+  const handleNavigationBtn = (params) => {
+    setContentType(params);
+  };
 
-const handleLogoutButton = (second) => { 
-  logOutEvent()
-  handleClose()
- }
   return (
     <div
       className="topbar"
-      style={isscrolled? { backgroundColor:'#0f0f0f' }:{}}
+      style={isscrolled ? { backgroundColor: "#0f0f0f" } : {}}
     >
       <div className="topbarContainer">
         <div className="left">
           <img src="./assets/images/Netflix_Logo_PMS.png" alt="" />
-          <div className="headerItems">
-            <span>Homepage</span>
-            <span>Series</span>
-            <span>Movies</span>
+          <Box className="headerItems" sx={{'& span':{
+            cursor:"pointer"
+          }}}>
+            <Button>Homepage</Button>
+            <span onClick={() => setContentType("tv")}>TV Shows</span>
+            <span onClick={() => setContentType("movie")}>Movies</span>
             <span>New & Popular</span>
             <span>My List</span>
-          </div>
+          </Box>
+          {/* <BottomNavigation
+            // sx={{ width: 500 }}
+            sx={{bgcolor:'transparent',height:'inherit','& .MuiBottomNavigationAction-label':{color:"white",opacity:0.5}}}
+            className="headerItems"
+            showLabels
+            value={value}
+            onChange={handleChange}
+          >
+            <BottomNavigationAction showLabel label="Homepage" value="home" />
+            <BottomNavigationAction showLabel label="TV Shows" value="tv" />
+            <BottomNavigationAction showLabel label="movie" value="Movies" />
+            <BottomNavigationAction showLabel label="New & Popular" value="newPopular" />
+            <BottomNavigationAction showLabel label="My List" value="mylist" />
+          </BottomNavigation> */}
         </div>
         <div className="right">
           {/* <select defaultValue={"en"} name="language" id="language">

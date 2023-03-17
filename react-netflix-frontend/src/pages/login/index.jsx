@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { object, string } from "yup";
 import { useGlobalAuthContext } from "../../context/auth/Authcontext";
+import InvokeAPI from "../../utils/axiosSetup";
 import {
   regCapitalchar,
   regEmail,
@@ -26,7 +27,7 @@ const Login = () => {
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-  const {  user, setUser,LoginEvent } = useGlobalAuthContext();
+  const { user, setUser, LoginEvent } = useGlobalAuthContext();
   let navigate = useNavigate();
   const [showpassword, setShowpassword] = useState(false);
   const initialValues = {
@@ -47,10 +48,11 @@ const Login = () => {
       .required("Email is required"),
   });
 
-  const handleFormSubmit = (values) => {
+  const handleFormSubmit = async (values) => {
     console.log(values);
-    
-    LoginEvent();
+   
+    // console.log(login);
+   LoginEvent(values.email,values.password);
     navigate("/");
   };
 
@@ -86,7 +88,7 @@ const Login = () => {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-             {/* <input  onBlur={handleBlur}
+              {/* <input  onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.password} type="email" placeholder="Email or phone number"  error={!!touched.email && !!errors.email}
                 // @ts-ignore
@@ -100,7 +102,6 @@ const Login = () => {
                 a bot. <b>Learn more</b>.
               </small> */}
               <TextField
-              
                 margin="normal"
                 required
                 fullWidth
@@ -155,18 +156,30 @@ const Login = () => {
                 Sign In
               </Button>
             </Box>
-           
           )}
         </Formik>
-       <Box sx={{width:'300px',display:'flex',flexDirection:'column',gap:1}} >
-       <span>
-                New to Netflix? <Link style={{marginLeft:'10px' ,color:'#fff',fontWeight:'bold' }} to={"/"}>Sign up now.</Link>
-              </span>
-              <small>
-                This page is protected by Google reCAPTCHA to ensure you're not
-                a bot. <b>Learn more</b>.
-              </small>
-       </Box>
+        <Box
+          sx={{
+            width: "300px",
+            display: "flex",
+            flexDirection: "column",
+            gap: 1,
+          }}
+        >
+          <span>
+            New to Netflix?{" "}
+            <Link
+              style={{ marginLeft: "10px", color: "#fff", fontWeight: "bold" }}
+              to={"/"}
+            >
+              Sign up now.
+            </Link>
+          </span>
+          <small>
+            This page is protected by Google reCAPTCHA to ensure you're not a
+            bot. <b>Learn more</b>.
+          </small>
+        </Box>
       </div>
     </div>
   );

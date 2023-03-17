@@ -9,7 +9,7 @@ import { millisecondsToStr } from "../../utils/custom/CustomFunctions";
 const Details = () => {
   const { getMovieInfo, infoMovie, similar, credits } = useGlobalAppContext();
 
-  console.log(similar);
+
   return (
     <div className="Details">
       <div className="left">

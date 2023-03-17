@@ -1,6 +1,6 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { Box, Button, Skeleton, Stack, Typography } from "@mui/material";
+import React, { Fragment, useEffect, useState } from "react";
 import "./style.scss";
 import App from "./../../App";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
@@ -11,58 +11,35 @@ import InvokeAPI, { cleanQueryparam } from "../../utils/axiosSetup";
 import { useGlobalAuthContext } from "../../context/auth/Authcontext";
 import { configurationDB } from "../../assets/mock/movie";
 import Loading from "../loader/Loading";
+import { useNavigate } from "react-router-dom";
 
-function generateRandomInteger(min, max) {
-  return Math.floor(min + Math.random() * (max - min + 1));
-}
 
-export const fetchSingle = async (id, store, loading) => {
-  const query = { language: "en-US", append_to_response: null };
-  cleanQueryparam(query);
-  const res = await InvokeAPI(`movie/${id}`, "get", {}, {}, query);
-  store(res);
-};
-
-export const fetchDiscover = async (store, loading, setFeatureMovie) => {
-  console.log(generateRandomInteger(2, 100));
-  const query = {
-    language: "en-US",
-    append_to_response: null,
-    page: store.total_pages
-      ? generateRandomInteger(2, store.total_pages)
-      : generateRandomInteger(2, 100),
-  };
-  cleanQueryparam(query);
-  const res = await InvokeAPI(`discover/movie`, "get", {}, {}, query);
-  // const randomElement =
-  //   res?.results[Math.floor(Math.random() * res?.results?.length)];
-  // console.log(randomElement);
-  store(res);
-  fetchSingle(
-    (res?.results[Math.floor(Math.random() * res?.results?.length)]).id,
-    setFeatureMovie
-  );
-};
 
 const Featured = ({ type }) => {
-  const { modal, showHideModal, loader, setLoader,getMovieInfo,infoMovie } = useGlobalAppContext();
-  const [featureMovie, setFeatureMovie] = useState(null);
+  const { contentType, setContentType, modal, showHideModal, loader, setLoader, getMovieInfo,featureMovie,fetchDiscover,fetchSingle, infoMovie } =
+    useGlobalAppContext();
+   
   const [feature, setFeature] = useState(null);
+  const navigate = useNavigate();
+ 
+  const handleWatch = () => {
+    //  setIsHovered(!isHovered)
+    navigate(`/watch/${featureMovie.id}`);
+    // console.log(navigate);
+  };
 
-  const handleinfo = (second) => {};
-  useEffect(() => {
-    try {
-      fetchDiscover(setFeature, setLoader, setFeatureMovie);
-    } catch (error) {}
-  }, []);
+ useEffect(() => {
+  fetchDiscover()
+ }, [contentType]);
 
-  const MovieInfoget = (id) => { 
-    showHideModal()
-    getMovieInfo(id)
-   }
+  const MovieInfoget = (id) => {
+    showHideModal();
+    getMovieInfo(id);
+  };
 
   return (
-    <Box sx={{ position: "relative" }} className="Featured">
+  <Fragment>
+    {loader?<Skeleton sx={{ height: '90vh' }} animation="wave" variant="rectangular" />:  <Box sx={{ position: "relative" }} className="Featured">
       {type && (
         <div className="category">
           <span>{type === "movie" ? "Movies" : "Series"}</span>
@@ -90,9 +67,12 @@ const Featured = ({ type }) => {
         alt=""
       />
       <Box className="info" sx={{ position: "absolute" }}>
-        <Typography variant="h2">{featureMovie?.title}</Typography>
+        <Typography variant="h2">{featureMovie?.title?featureMovie.title:featureMovie?.name}</Typography>
 
-        <span className="desc">{`${featureMovie?.overview.substring(0,140)}...`}</span>
+       {featureMovie?.overview && <span className="desc">{`${featureMovie?.overview.substring(
+          0,
+          140
+        )}...`}</span>}
         <Stack
           direction="row"
           spacing={2}
@@ -104,6 +84,7 @@ const Featured = ({ type }) => {
           }}
         >
           <Button
+          onClick={handleWatch}
             sx={{
               backgroundColor: " white",
               color: "black",
@@ -120,7 +101,7 @@ const Featured = ({ type }) => {
             Play
           </Button>
           <Button
-            onClick={()=>MovieInfoget(featureMovie.id)}
+            onClick={() => MovieInfoget(featureMovie.id)}
             sx={{
               backgroundColor: "rgba(109, 109, 110, 0.7)",
               color: "white",
@@ -136,17 +117,17 @@ const Featured = ({ type }) => {
           >
             More Info
           </Button>
-       
-          {modal && (
-            <ReactPortal
-              ClassName={"movieInfo"}
-              ModalContent={Moviedetails}
-              color={"#fff"}
-            />
-          )}
         </Stack>
       </Box>
-    </Box>
+      {modal && (
+        <ReactPortal
+          ClassName={"movieInfo"}
+          ModalContent={Moviedetails}
+          color={"#fff"}
+        />
+      )}
+    </Box>}
+  </Fragment>
   );
 };
 

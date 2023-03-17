@@ -10,7 +10,7 @@ import { AuthProvider } from "./context/auth/Authcontext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <React.Fragment>
     <AuthProvider>
       <AppProvider>
         <BrowserRouter>
@@ -20,5 +20,5 @@ root.render(
       </AppProvider>
     </AuthProvider>
     <ToastContainer />
-  </React.StrictMode>
+  </React.Fragment>
 );
