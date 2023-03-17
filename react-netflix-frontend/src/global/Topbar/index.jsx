@@ -27,6 +27,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { language } from "../../assets/mock/staticData";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import { useGlobalAuthContext } from "../../context/auth/Authcontext";
@@ -37,13 +38,22 @@ const Topbar = () => {
   const [isscrolled, setIsscrolled] = useState(false);
   const [scrollStyle, setScrollStyle] = useState(false);
   const { user, setUser, LoginEvent, logOutEvent } = useGlobalAuthContext();
-  const { contentType, setContentType } = useGlobalAppContext();
-  const [value, setValue] = React.useState("home");
+  const {
+    contentType,
+    setContentType,
+    type,
+    setType,
+    searchMovieSerials,
+    searchData,
+    keywordData,
+  } = useGlobalAppContext();
+  const [value, setValue] = React.useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -61,9 +71,28 @@ const Topbar = () => {
     handleClose();
   };
 
-  const handleNavigationBtn = (params) => {
+  const handleNavigationBtn = (params, ttype) => {
     setContentType(params);
+    setType(ttype);
   };
+
+  const handleSearch = (e) => {
+    setValue(e.target.value);
+    navigate("/search");
+    console.log(value);
+  };
+
+  const homeClick = () => {
+    setContentType("movie");
+    setType(null);
+    navigate("/");
+  };
+
+  useEffect(() => {
+   if (value) {
+    searchMovieSerials(value);
+   }
+  }, [value]);
 
   return (
     <div
@@ -73,43 +102,26 @@ const Topbar = () => {
       <div className="topbarContainer">
         <div className="left">
           <img src="./assets/images/Netflix_Logo_PMS.png" alt="" />
-          <Box className="headerItems" sx={{'& span':{
-            cursor:"pointer"
-          }}}>
-            <Button>Homepage</Button>
-            <span onClick={() => setContentType("tv")}>TV Shows</span>
-            <span onClick={() => setContentType("movie")}>Movies</span>
+          <Box
+            className="headerItems"
+            sx={{
+              "& span": {
+                cursor: "pointer",
+              },
+            }}
+          >
+            <span onClick={homeClick}>Homepage</span>
+            <span onClick={() => handleNavigationBtn("tv", "TV shows")}>
+              TV Shows
+            </span>
+            <span onClick={() => handleNavigationBtn("movie", "movie")}>
+              Movies
+            </span>
             <span>New & Popular</span>
             <span>My List</span>
           </Box>
-          {/* <BottomNavigation
-            // sx={{ width: 500 }}
-            sx={{bgcolor:'transparent',height:'inherit','& .MuiBottomNavigationAction-label':{color:"white",opacity:0.5}}}
-            className="headerItems"
-            showLabels
-            value={value}
-            onChange={handleChange}
-          >
-            <BottomNavigationAction showLabel label="Homepage" value="home" />
-            <BottomNavigationAction showLabel label="TV Shows" value="tv" />
-            <BottomNavigationAction showLabel label="movie" value="Movies" />
-            <BottomNavigationAction showLabel label="New & Popular" value="newPopular" />
-            <BottomNavigationAction showLabel label="My List" value="mylist" />
-          </BottomNavigation> */}
         </div>
         <div className="right">
-          {/* <select defaultValue={"en"} name="language" id="language">
-            <option value="0">select language</option>
-            {language.map((val) => (
-              <option key={val.code} value={val.code}>
-                {val.name}
-              </option>
-            ))}
-          </select>
-          <Button variant="contained" color="error">
-            Sign in
-          </Button> */}
-
           {showSearch ? (
             <FormControl
               sx={{
@@ -124,6 +136,8 @@ const Topbar = () => {
             >
               <Search onClick={() => setShowSearch(!showSearch)} />
               <input
+                onChange={handleSearch}
+                value={value}
                 style={{
                   outline: "0",
                   border: "none",

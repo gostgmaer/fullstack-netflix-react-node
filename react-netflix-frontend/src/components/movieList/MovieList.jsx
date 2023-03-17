@@ -4,8 +4,10 @@ import {
   ArrowForward,
   ArrowForwardIos,
 } from "@mui/icons-material";
-import { Box, colors, IconButton } from "@mui/material";
-import React, { useRef, useState } from "react";
+import { Box, colors, IconButton, Skeleton } from "@mui/material";
+import { filter } from "lodash";
+import React, { Fragment, useRef, useState } from "react";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
 
 import Listitem from "./ListItem/Listitem";
 import MovieListItem from "./ListItem/MovieListItem";
@@ -14,7 +16,7 @@ const MovieList = ({ heading, data }) => {
   const listref = useRef(null);
   const [slideNumber, setSlideNumber] = useState(0);
   const [ismoved, setIsmoved] = useState(false);
-
+  const { loader } = useGlobalAppContext();
   const handleArrow = (direction) => {
     let distance = listref.current.getBoundingClientRect().x - 50;
     console.log(distance);
@@ -28,6 +30,8 @@ const MovieList = ({ heading, data }) => {
       listref.current.style.transform = `translateX(${-230 + distance}px)`;
     }
   };
+
+  // data?.results.filter((item) => item.backdrop_path || item.poster_path);
 
   const handleClick = (direction) => {
     setIsmoved(true);
@@ -66,9 +70,24 @@ const MovieList = ({ heading, data }) => {
           className="items"
           sx={{ display: "flex", gap: "5px" }}
         >
-          {data?.results?.slice(0, 20)?.map((item, index) => (
-            <MovieListItem key={item.id} item={item} index={index} />
-          ))}
+          {data?.results
+            ?.filter((item) => item.backdrop_path || item.poster_path)
+            .slice(0, 20)
+            ?.map((item, index) => (
+              <Fragment key={item.id}>
+                {" "}
+                {loader ? (
+                  <Skeleton
+                    animation="wave"
+                    height={10}
+                    width="80%"
+                    style={{ marginBottom: 6 }}
+                  />
+                ) : (
+                  <MovieListItem item={item} index={index} />
+                )}
+              </Fragment>
+            ))}
         </Box>
 
         <IconButton

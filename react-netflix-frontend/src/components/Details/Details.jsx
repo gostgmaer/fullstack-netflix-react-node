@@ -15,9 +15,9 @@ const Details = () => {
       <div className="left">
         <div className="matches">
           <strong>87% Match</strong>
-          <span>{moment(infoMovie?.release_date).format("YYYY")}</span>
+          <span>{moment(infoMovie?.release_date?infoMovie?.release_date:infoMovie?.first_air_date).format("YYYY")}</span>
           <span className="age">U/A 16+</span>
-          <span>{millisecondsToStr(infoMovie?.runtime * 60 * 1000)}</span>
+          <span>{infoMovie?.runtime?millisecondsToStr(infoMovie?.runtime * 60 * 1000):`${infoMovie?.number_of_seasons} Session`}</span>
           <span className="quality">HD</span>
           <Tooltip
             sx={{

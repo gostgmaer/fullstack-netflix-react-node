@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/:id" element={<Moviedetails />} />
       <Route path="/watch" element={<Watch />} />
-      <Route path="/search/:id" element={<SearchContent />} />
+      <Route path="/search" element={<SearchContent />} />
       <Route path="/watch/:id" element={<Watch />} />
     </Routes>
   );

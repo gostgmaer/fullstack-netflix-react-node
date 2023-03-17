@@ -1,4 +1,3 @@
-import "./styles.scss";
 
 import { Fragment, useState } from "react";
 import React from "react";
@@ -10,14 +9,15 @@ import {
 } from "@mui/icons-material";
 import { Box, Button, IconButton, Skeleton, Tooltip } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useGlobalAppContext } from "../../../../context/AppGlobalContent";
-import ReactPortal from "../../../../global/Modal/ReactPortal";
-import Moviedetails from "../../../Details/Moviedetails";
-import { configurationDB, genres } from "../../../../assets/mock/movie";
+import { useGlobalAppContext } from "../../context/AppGlobalContent";
+import { configurationDB, genres } from "../../assets/mock/movie";
+import ReactPortal from "../../global/Modal/ReactPortal";
+import Moviedetails from "../Details/Moviedetails";
 
-export default function MovieListItem({ index, item }) {
+
+export default function CartItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
-  const { modal, loader, setModal, showHideModal, getMovieInfo } =
+  const { modal, loader, setModal, showHideModal, getMovieInfo, infoMovie } =
     useGlobalAppContext();
 
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function MovieListItem({ index, item }) {
           onMouseLeave={() => setIsHovered(false)}
         >
           <img
-            src={`${configurationDB.images.base_url}/${item.backdrop_path?configurationDB.images.backdrop_sizes[2]:configurationDB.images.poster_sizes[4]}${item?.backdrop_path?item.backdrop_path:item?.poster_path}`}
+            src={`${configurationDB.images.base_url}/${configurationDB.images.backdrop_sizes[2]}${item.backdrop_path}`}
             alt=""
           />
           {isHovered && (
