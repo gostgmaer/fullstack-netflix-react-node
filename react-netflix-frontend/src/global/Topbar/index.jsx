@@ -46,8 +46,9 @@ const Topbar = () => {
     searchMovieSerials,
     searchData,
     keywordData,
+    value,
+    setValue,
   } = useGlobalAppContext();
-  const [value, setValue] = React.useState("");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -89,9 +90,9 @@ const Topbar = () => {
   };
 
   useEffect(() => {
-   if (value) {
-    searchMovieSerials(value);
-   }
+    if (value) {
+      searchMovieSerials(value);
+    }
   }, [value]);
 
   return (

@@ -14,6 +14,7 @@ import { useGlobalAppContext } from "../../../../context/AppGlobalContent";
 import ReactPortal from "../../../../global/Modal/ReactPortal";
 import Moviedetails from "../../../Details/Moviedetails";
 import { configurationDB, genres } from "../../../../assets/mock/movie";
+import { millisecondsToStr } from "../../../../utils/custom/CustomFunctions";
 
 export default function MovieListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -50,7 +51,11 @@ export default function MovieListItem({ index, item }) {
           onMouseLeave={() => setIsHovered(false)}
         >
           <img
-            src={`${configurationDB.images.base_url}/${item.backdrop_path?configurationDB.images.backdrop_sizes[2]:configurationDB.images.poster_sizes[4]}${item?.backdrop_path?item.backdrop_path:item?.poster_path}`}
+            src={`${configurationDB.images.base_url}/${
+              item.backdrop_path
+                ? configurationDB.images.backdrop_sizes[2]
+                : configurationDB.images.poster_sizes[4]
+            }${item?.backdrop_path ? item.backdrop_path : item?.poster_path}`}
             alt=""
           />
           {isHovered && (
@@ -92,7 +97,8 @@ export default function MovieListItem({ index, item }) {
                   <div className="quality">
                     <span className="match">94% match</span>{" "}
                     <span className="age">U/A {"13+"}</span>{" "}
-                    <span>{"2h 12m "}</span> <span className="quality">HD</span>
+                   
+                    <span className="quality">HD</span>
                   </div>
                   <div className="genres">
                     <span>Genres : </span>

@@ -4,6 +4,7 @@ import moment from "moment/moment";
 import React, { Fragment } from "react";
 import { configurationDB } from "../../assets/mock/movie";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
+import { millisecondsToStr } from "../../utils/custom/CustomFunctions";
 
 const MovieItem = ({ item }) => {
   const { modal,loader, showHideModal,getMovieInfo,infoMovie } = useGlobalAppContext();
@@ -17,12 +18,15 @@ const MovieItem = ({ item }) => {
           }${item.backdrop_path ? item.backdrop_path : item.poster_path}`}
           alt=""
         />
-        <div className="text"></div>
+        {/* <span className="time">{item?.runtime&&millisecondsToStr(item?.runtime * 60 * 1000)}</span> 
+       
+         */}
         <div className="bottonPlay">
           <IconButton className="playicon">
             <PlayArrow />
           </IconButton>
         </div>
+        <div className="text">{<span>{item?.title ? item.title : item.name}</span>}</div>
       </div>
       <div className="content">
         <div className="top">
@@ -31,6 +35,7 @@ const MovieItem = ({ item }) => {
             <div>
               <span className="age">U/A 13+</span>
               <span> {moment(item.release_date).format("YYYY")}</span>
+             
             </div>
           </div>
           <div className="right">

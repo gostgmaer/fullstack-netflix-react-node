@@ -19,12 +19,13 @@ const AppProvider = ({ children }) => {
   const [upcommingMovie, setUpcommingMovie] = useState(null);
   const [featureMovie, setFeatureMovie] = useState(null);
   const [discoverData, setdiscoverData] = useState(null);
-  const [contentType, setContentType] = useState('tv');
+  const [contentType, setContentType] = useState('movie');
   const [searchData, setSearchData] = useState(null);
   const [keywordData, setKeywordData] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [seriesEpisods, setSeriesEpisods] = useState(1);
   const [type, setType] = useState(null);
+  const [value, setValue] = React.useState("");
 
   const showHideModal = () => {
     setModal(!modal);
@@ -233,7 +234,7 @@ const AppProvider = ({ children }) => {
         getupcomingMovie,getAllEpisode,
         upcommingMovie,
         getPopularMovie,
-        popular, openModal,episode,setSeriesEpisods,seriesEpisods,
+        popular, openModal,episode,setSeriesEpisods,seriesEpisods,value, setValue,
         getTopRatedMovie,searchMovieSerials,searchData,keywordData,
         topRatedMovie, GetgaterogywiseMovie, setModal, featureMovie, fetchDiscover, fetchSingle, contentType, setContentType
       }}

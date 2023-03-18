@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Homepage from "../pages/homePage";
 import Login from "../pages/login";
-import SearchContent from "../pages/search/SearchContent";
+// import SearchContent from "../pages/search/SearchContent";
 import Register from "../pages/signup/signup";
 import Watch from "../pages/Watch/Watch";
 import Moviedetails from './../components/Details/Moviedetails';
@@ -14,7 +14,7 @@ const ProtectedRoute = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/:id" element={<Moviedetails />} />
       <Route path="/watch" element={<Watch />} />
-      <Route path="/search" element={<SearchContent />} />
+      {/* <Route path="/search" element={<SearchContent />} /> */}
       <Route path="/watch/:id" element={<Watch />} />
     </Routes>
   );

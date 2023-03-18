@@ -74,19 +74,7 @@ const MovieList = ({ heading, data }) => {
             ?.filter((item) => item.backdrop_path || item.poster_path)
             .slice(0, 20)
             ?.map((item, index) => (
-              <Fragment key={item.id}>
-                {" "}
-                {loader ? (
-                  <Skeleton
-                    animation="wave"
-                    height={10}
-                    width="80%"
-                    style={{ marginBottom: 6 }}
-                  />
-                ) : (
-                  <MovieListItem item={item} index={index} />
-                )}
-              </Fragment>
+              <MovieListItem key={index} item={item} index={index} />
             ))}
         </Box>
 
