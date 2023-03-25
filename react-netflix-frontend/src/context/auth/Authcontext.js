@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from "react";
-import InvokeAPI from "../../utils/axiosSetup";
 const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
