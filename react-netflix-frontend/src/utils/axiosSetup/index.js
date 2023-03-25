@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL, loginURL, queryString, token } from "../../services/settings";
+import { baseURL, loginURL, queryString } from "../../services/settings";
 
 const InvokeAPI = async (
   endpoint,

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import InvokeAPI, { cleanQueryparam } from "../utils/axiosSetup";
 import { generateRandomInteger } from "../utils/custom/CustomFunctions";
 const AppContext = React.createContext(null);
@@ -7,7 +7,6 @@ const AppProvider = ({ children }) => {
   const [modal, setModal] = useState(false);
   const [loader, setLoader] = useState(false);
   const [openModal, setOpenModal] = useState(true);
-  const [movieID, setMovieID] = useState(null);
   const [infoMovie, setInfoMovie] = useState(null);
   const [similar, setSimilar] = useState(null);
   const [trending, setTrending] = useState(null);
@@ -18,7 +17,6 @@ const AppProvider = ({ children }) => {
   const [topRatedMovie, setTopRatedMovie] = useState(null);
   const [upcommingMovie, setUpcommingMovie] = useState(null);
   const [featureMovie, setFeatureMovie] = useState(null);
-  const [discoverData, setdiscoverData] = useState(null);
   const [contentType, setContentType] = useState('movie');
   const [searchData, setSearchData] = useState(null);
   const [keywordData, setKeywordData] = useState(null);
