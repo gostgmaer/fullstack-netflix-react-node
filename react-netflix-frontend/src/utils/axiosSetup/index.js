@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL, loginURL, queryString, token } from "../../services/settings";
+import { baseURL, loginURL, queryString } from "../../services/settings";
 
 const InvokeAPI = async (
   endpoint,
@@ -24,7 +24,7 @@ const InvokeAPI = async (
   } catch (e) {
     throw new Error(e.message);
   }
-
+console.log('Data');
   // if success return value
   return response?.data ? response?.data : null; // or set initial value
 };
