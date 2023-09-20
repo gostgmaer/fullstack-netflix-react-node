@@ -40,7 +40,7 @@ const Episodes = () => {
       );
       setEpisode(res);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -50,7 +50,7 @@ const Episodes = () => {
     }
   }, [Number(episodeData)]);
 
-  console.log(episode);
+  // console.log(episode);
   return (
     <div className="Episodes">
       <div className="top">
@@ -66,7 +66,7 @@ const Episodes = () => {
             }}
           >
             {[...Array(infoMovie?.number_of_seasons).keys()].map((item) => {
-              console.log(item);
+              {/* console.log(item); */}
               return (
                 <option key={item} value={item + 1}>{`Session ${
                   item + 1

@@ -56,7 +56,7 @@ const Topbar = () => {
   };
 
   const location = useLocation();
-  console.log(location);
+
 
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -84,7 +84,7 @@ const Topbar = () => {
   const handleSearch = (e) => {
     setValue(e.target.value);
     navigate("/search");
-    console.log(value);
+  
   };
 
   const homeClick = () => {
