@@ -24,7 +24,7 @@ const InvokeAPI = async (
   } catch (e) {
     throw new Error(e.message);
   }
-console.log('Data');
+
   // if success return value
   return response?.data ? response?.data : null; // or set initial value
 };

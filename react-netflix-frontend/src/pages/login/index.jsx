@@ -50,7 +50,7 @@ const Login = () => {
   });
 
   const handleFormSubmit = async (values) => {
-    console.log(values);
+    // console.log(values);
 
     // console.log(login);
     LoginEvent(values.email, values.password);
