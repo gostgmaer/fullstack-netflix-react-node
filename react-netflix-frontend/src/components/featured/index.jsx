@@ -55,9 +55,9 @@ const Featured = () => {
           variant="rectangular"
         />
       ) : (
-        <Box sx={{ position: "relative" }} className="Featured">
+        <Box sx={{ position: "relative" }} className="Featured" >
           {type && (
-            <div className="category">
+            <div className="category" style={{zIndex:101}}>
               <span>{type === "movie" ? "Movies" : "Tv Shows"}</span>
               <select name="genre" id="genre">
                 <option>Genre</option>
