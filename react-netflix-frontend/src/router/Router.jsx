@@ -6,6 +6,7 @@ import Login from "../pages/login";
 import Register from "../pages/signup/signup";
 import Watch from "../pages/Watch/Watch";
 import Moviedetails from './../components/Details/Moviedetails';
+import NotFound from "../pages/404/NotFound";
 
 const ProtectedRoute = () => {
   return (
@@ -14,6 +15,7 @@ const ProtectedRoute = () => {
       <Route path="/" element={<Homepage />} />
       <Route path="/:id" element={<Moviedetails />} />
       <Route path="/watch" element={<Watch />} />
+      <Route path="*" element={<NotFound />} />
       {/* <Route path="/search" element={<SearchContent />} /> */}
       <Route path="/watch/:id" element={<Watch />} />
     </Routes>
@@ -26,6 +28,7 @@ export const UnprotectedRoute = () => {
   return (
     <Routes>
       <Route path="/" element={<Register />} />
+      <Route path="*" element={<NotFound />} />
       <Route path="/sign-in" element={<Login />} />
     </Routes>
   );

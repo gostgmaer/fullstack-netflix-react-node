@@ -4,6 +4,7 @@ import {
   Checkbox,
   FormControlLabel,
   TextField,
+  Typography,
 } from "@mui/material";
 import { Formik } from "formik";
 import React, { useState } from "react";
@@ -36,23 +37,23 @@ const Login = () => {
   };
   const userSchema = object().shape({
     password: string()
-      .required("Password is required")
+      .required("Your password must contain between 4 and 60 characters.")
       .matches(regSmallChar, "Password must have a small letter")
       .matches(regCapitalchar, "Password must have a capital letter")
       .matches(regNumber, "Password must have a number")
       .matches(regspecialChar, "Password must have a special character")
-      .min(8, ({ min }) => `Password must be at least ${min} characters`),
+      .min(4, ({ min }) => `Password must be at least ${min} characters`),
     email: string()
       .matches(regEmail, "Email Address is not Valid")
       .email()
-      .required("Email is required"),
+      .required("Please enter a valid email address or phone number."),
   });
 
   const handleFormSubmit = async (values) => {
     console.log(values);
-   
+
     // console.log(login);
-   LoginEvent(values.email,values.password);
+    LoginEvent(values.email, values.password);
     navigate("/");
   };
 
@@ -67,7 +68,16 @@ const Login = () => {
           />
         </div>
       </div>
-      <div className="container">
+      <div className="container">{loginForm()}</div>
+    </div>
+  );
+
+  function loginForm() {
+    return (
+      <div className="form-login-page">
+      <Typography component={'h1'} fontSize={'32px'} fontWeight={'600'}>
+        Login
+      </Typography>
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}
@@ -88,28 +98,16 @@ const Login = () => {
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
-              {/* <input  onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.password} type="email" placeholder="Email or phone number"  error={!!touched.email && !!errors.email}
-                // @ts-ignore
-                helperText={touched.email && errors.email} />
-              <input type="password" placeholder="Password" /> */}
-              {/* <span>
-                New to Netflix? <Link to={"/"}>Sign up now.</Link>
-              </span>
-              <small>
-                This page is protected by Google reCAPTCHA to ensure you're not
-                a bot. <b>Learn more</b>.
-              </small> */}
               <TextField
                 margin="normal"
                 required
                 fullWidth
                 id="email"
-                placeholder="Email Address"
+                placeholder="Email or phone number"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                label="Email or phone number"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 value={values.email}
@@ -126,35 +124,37 @@ const Login = () => {
                 onChange={handleChange}
                 value={values.password}
                 name="password"
+                label="Password"
                 error={!!touched.password && !!errors.password}
                 // @ts-ignore
                 helperText={touched.password && errors.password}
               />
-              <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              />
-              {/* <form onSubmit={handleSubmit}>
-              <h1>Sign In</h1>
-              <input type="email" placeholder="Email or phone number" />
-              <input type="password" placeholder="Password" />
-              <button className="loginButton">Sign In</button>
-              <span>
-                New to Netflix? <Link to={"/"}>Sign up now.</Link>
-              </span>
-              <small>
-                This page is protected by Google reCAPTCHA to ensure you're not
-                a bot. <b>Learn more</b>.
-              </small>
-            </form> */}
+
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
-                sx={{ mt: 3, p: "8px 0", mb: 2 }}
+                sx={{ mt: 5, p: "10px 0", mb: 2 }}
               >
                 Sign In
               </Button>
+              <Box display={'flex'} justifyContent={'space-between'} mt={'-10px'} alignItems={'center'}>
+                <FormControlLabel
+                  sx={{ fontSize: "13px",
+                        "&>.MuiFormControlLabel-label": { fontSize: "13px" }, }}
+                  control={
+                    <Checkbox
+                      value="remember"
+                      color="primary"
+                      sx={{
+                        fontSize: "13px"
+                      }}
+                    />
+                  }
+                  label="Remember me"
+                />
+                <Typography fontSize={"13px"}> Need help? </Typography>
+              </Box>
             </Box>
           )}
         </Formik>
@@ -163,7 +163,7 @@ const Login = () => {
             width: "300px",
             display: "flex",
             flexDirection: "column",
-            gap: 1,
+            gap: 2,
           }}
         >
           <span>
@@ -177,12 +177,12 @@ const Login = () => {
           </span>
           <small>
             This page is protected by Google reCAPTCHA to ensure you're not a
-            bot. <b>Learn more</b>.
+            bot. <b style={{cursor:'pointer'}}>Learn more</b>.
           </small>
         </Box>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default Login;
