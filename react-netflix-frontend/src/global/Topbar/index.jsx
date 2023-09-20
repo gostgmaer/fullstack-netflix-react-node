@@ -27,7 +27,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useResolvedPath } from "react-router-dom";
 import { language } from "../../assets/mock/staticData";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
 import { useGlobalAuthContext } from "../../context/auth/Authcontext";
@@ -37,6 +37,7 @@ const Topbar = () => {
   const [showSearch, setShowSearch] = useState(false);
   const [isscrolled, setIsscrolled] = useState(false);
   const [scrollStyle, setScrollStyle] = useState(false);
+  const [ismovie, setIsmovie] = useState(false);
   const { user, setUser, LoginEvent, logOutEvent } = useGlobalAuthContext();
   const {
     contentType,
@@ -53,6 +54,9 @@ const Topbar = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const location = useLocation();
+  console.log(location);
 
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
@@ -93,7 +97,12 @@ const Topbar = () => {
     if (value) {
       searchMovieSerials(value);
     }
-  }, [value]);
+    if (location.pathname.includes('watch')) {
+      setIsmovie(true)
+    }else{
+      setIsmovie(false)
+    }
+  }, [value,location.pathname]);
 
   return (
     <div
@@ -107,7 +116,7 @@ const Topbar = () => {
             className="headerItems"
             sx={{
               "& span": {
-                cursor: "pointer",
+                cursor: "pointer",visibility:ismovie?'hidden':'unset'
               },
             }}
           >

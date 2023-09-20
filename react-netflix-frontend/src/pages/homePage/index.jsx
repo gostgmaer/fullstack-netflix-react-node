@@ -25,75 +25,80 @@ const Homepage = () => {
     getTopRatedMovie,
     topRatedMovie,
     contentType,
-    setContentType,type, setType
+    setContentType,
+    type,
+    setType,
+    action,
+    setAction,
+    advanture,
+    setAdvanture,
+    horror,
+    setHorror,
+    animation,
+    setAnimation,
+    documentory,
+    setDocumentory,
+    romance,
+    setRomance,
+    music,
+    setMusic,
   } = useGlobalAppContext();
-  const [action, setAction] = useState(null);
-  const [advanture, setAdvanture] = useState(null);
-  const [horror, setHorror] = useState(null);
-  const [animation, setAnimation] = useState(null);
-  const [documentory, setDocumentory] = useState(null);
-  const [romance, setRomance] = useState(null);
-  const [music, setMusic] = useState(null);
 
-  const calAdvanture = async () => {
-    const res = await GetgaterogywiseMovie(12);
-    setAdvanture(res);
-  };
-  const callActionCate = async () => {
-    const res = await GetgaterogywiseMovie(28);
-    setAction(res);
-  };
-  const callHorror = async () => {
-    const res = await GetgaterogywiseMovie(27);
-    setHorror(res);
-  };
-  const callAnimation = async () => {
-    const res = await GetgaterogywiseMovie(16);
-    setAnimation(res);
-  };
-  const callRomance = async () => {
-    const res = await GetgaterogywiseMovie(10749);
-    setRomance(res);
-  };
-  const callDocumentory = async () => {
-    const res = await GetgaterogywiseMovie(99);
-    setDocumentory(res);
-  };
-  const callMusic = async () => {
-    const res = await GetgaterogywiseMovie(10402);
-    setMusic(res);
-  };
+  // const calAdvanture = async () => {
+  //   const res = await GetgaterogywiseMovie(12);
+  //   setAdvanture(res);
+  // };
+  // const callActionCate = async () => {
+  //   const res = await GetgaterogywiseMovie(28);
+  //   setAction(res);
+  // };
+  // const callHorror = async () => {
+  //   const res = await GetgaterogywiseMovie(27);
+  //   setHorror(res);
+  // };
+  // const callAnimation = async () => {
+  //   const res = await GetgaterogywiseMovie(16);
+  //   setAnimation(res);
+  // };
+  // const callRomance = async () => {
+  //   const res = await GetgaterogywiseMovie(10749);
+  //   setRomance(res);
+  // };
+  // const callDocumentory = async () => {
+  //   const res = await GetgaterogywiseMovie(99);
+  //   setDocumentory(res);
+  // };
+  // const callMusic = async () => {
+  //   const res = await GetgaterogywiseMovie(10402);
+  //   setMusic(res);
+  // };
 
-
-  
-  useEffect(() => {
-    getTrendingMovie();
-    getPlayingNow()
-    getLatestMovie();
-    getTopRatedMovie();
-    getupcomingMovie();
-    getPopularMovie();
-    callActionCate();
-    calAdvanture();
-    callAnimation();
-    callDocumentory();
-    callHorror();
-    callMusic();
-    callRomance();
-    
-  }, [contentType]);
+  // useEffect(() => {
+  //   getTrendingMovie();
+  //   getPlayingNow();
+  //   getLatestMovie();
+  //   getTopRatedMovie();
+  //   getupcomingMovie();
+  //   getPopularMovie();
+  //   callActionCate();
+  //   calAdvanture();
+  //   callAnimation();
+  //   callDocumentory();
+  //   callHorror();
+  //   callMusic();
+  //   callRomance();
+  // }, [contentType]);
 
   const { showHideModal } = useGlobalAppContext();
   return (
     <div className="Homepage">
-    
-      <Featured ></Featured>
+      <Featured></Featured>
       {/* {playingNow && (
         <MovieList heading={"Continue to Watch"} data={playingNow?.results.filter(item=>item.backdrop_path || item.poster_path)} />
       )} */}
-      {playingNow && 
-        <MovieList heading={"Continue to Watch"} data={playingNow}/>}
-
+      {playingNow && (
+        <MovieList heading={"Continue to Watch"} data={playingNow} />
+      )}
       <MovieList heading={"Trending Now"} data={trending} />
       {latestMovie?.results && (
         <MovieList heading={"Latest on Netflix"} data={latestMovie} />

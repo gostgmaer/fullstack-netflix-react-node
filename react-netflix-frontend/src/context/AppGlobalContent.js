@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import InvokeAPI, { cleanQueryparam } from "../utils/axiosSetup";
 import { generateRandomInteger } from "../utils/custom/CustomFunctions";
 const AppContext = React.createContext(null);
@@ -17,30 +17,43 @@ const AppProvider = ({ children }) => {
   const [topRatedMovie, setTopRatedMovie] = useState(null);
   const [upcommingMovie, setUpcommingMovie] = useState(null);
   const [featureMovie, setFeatureMovie] = useState(null);
-  const [contentType, setContentType] = useState('movie');
+  const [contentType, setContentType] = useState("movie");
   const [searchData, setSearchData] = useState(null);
   const [keywordData, setKeywordData] = useState(null);
   const [episode, setEpisode] = useState(null);
   const [seriesEpisods, setSeriesEpisods] = useState(1);
   const [type, setType] = useState(null);
   const [value, setValue] = React.useState("");
-
+  const [action, setAction] = useState(null);
+  const [advanture, setAdvanture] = useState(null);
+  const [horror, setHorror] = useState(null);
+  const [animation, setAnimation] = useState(null);
+  const [documentory, setDocumentory] = useState(null);
+  const [romance, setRomance] = useState(null);
+  const [music, setMusic] = useState(null);
+  
   const showHideModal = () => {
     setModal(!modal);
   };
 
-  const getAllEpisode = async (id,epi) => {
+  const getAllEpisode = async (id, epi) => {
     setLoader(true);
     try {
-      const query = { language: 'en-US', };
+      const query = { language: "en-US" };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/${id}/season/${epi}`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/${id}/season/${epi}`,
+        "get",
+        {},
+        {},
+        query
+      );
       setEpisode(res);
     } catch (error) {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const getAllRelatedKeyword = async (q) => {
     setLoader(true);
     try {
@@ -52,30 +65,35 @@ const AppProvider = ({ children }) => {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const searchMovieSerials = async (q) => {
     setLoader(true);
     try {
-      const query = { language: "en-US", page: 1, include_adult: false, query: q };
+      const query = {
+        language: "en-US",
+        page: 1,
+        include_adult: false,
+        query: q,
+      };
       cleanQueryparam(query);
       const res = await InvokeAPI(`search/multi`, "get", {}, {}, query);
       setSearchData(res);
-      getAllRelatedKeyword(q)
+      getAllRelatedKeyword(q);
     } catch (error) {
       console.log(error);
     }
     setLoader(false);
-  }
+  };
   const fetchSingle = async (id) => {
-    setLoader(true)
-    const query = { language: "en-US", append_to_response: 'videos,images' };
+    setLoader(true);
+    const query = { language: "en-US", append_to_response: "videos,images" };
     cleanQueryparam(query);
     const res = await InvokeAPI(`${contentType}/${id}`, "get", {}, {}, query);
     setFeatureMovie(res);
-    setLoader(false)
+    setLoader(false);
   };
   const fetchDiscover = async () => {
-    setLoader(true)
+    setLoader(true);
     console.log(generateRandomInteger(2, 100));
     const query = {
       language: "en-US",
@@ -83,18 +101,30 @@ const AppProvider = ({ children }) => {
       page: generateRandomInteger(2, 100),
     };
     cleanQueryparam(query);
-    const res = await InvokeAPI(`discover/${contentType}`, "get", {}, {}, query);
+    const res = await InvokeAPI(
+      `discover/${contentType}`,
+      "get",
+      {},
+      {},
+      query
+    );
     fetchSingle(
       (res?.results[Math.floor(Math.random() * res?.results?.length)]).id
     );
-    setLoader(false)
+    setLoader(false);
   };
   const getTrendingMovie = async (id) => {
     setLoader(true);
     try {
       const query = { language: "en-US", append_to_response: null, page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`trending/${contentType}/week`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `trending/${contentType}/week`,
+        "get",
+        {},
+        {},
+        query
+      );
       setTrending(res);
     } catch (error) {
       console.log(error);
@@ -102,12 +132,18 @@ const AppProvider = ({ children }) => {
     setLoader(false);
   };
   const getPlayingNow = async (id) => {
-    if (contentType === 'movie') {
+    if (contentType === "movie") {
       setLoader(true);
       try {
         const query = { language: "en-US", append_to_response: null, page: 1 };
         cleanQueryparam(query);
-        const res = await InvokeAPI(`${contentType}/now_playing`, "get", {}, {}, query);
+        const res = await InvokeAPI(
+          `${contentType}/now_playing`,
+          "get",
+          {},
+          {},
+          query
+        );
         setPlayingNow(res);
       } catch (error) {
         console.log(error);
@@ -119,7 +155,13 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US", append_to_response: null, page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/${id}/similar`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/${id}/similar`,
+        "get",
+        {},
+        {},
+        query
+      );
       setSimilar(res);
     } catch (error) {
       console.log(error);
@@ -129,24 +171,29 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US" };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/${id}/credits`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/${id}/credits`,
+        "get",
+        {},
+        {},
+        query
+      );
 
       setCredits(res);
     } catch (error) {
       console.log(error);
     }
   };
-  const getMovieInfo = async (id,epi) => {
+  const getMovieInfo = async (id, epi) => {
     setLoader(true);
     try {
-      const query = { language: "en-US", append_to_response: 'videos,images' };
+      const query = { language: "en-US", append_to_response: "videos,images" };
       cleanQueryparam(query);
       const res = await InvokeAPI(`${contentType}/${id}`, "get", {}, {}, query);
       setInfoMovie(res);
       getSimilarMovie(res.id);
       getCastAndCrew(res.id);
-      getAllEpisode(res.id,1)
-     
+      getAllEpisode(res.id, 1);
     } catch (error) {
       console.log(error);
     }
@@ -157,7 +204,13 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US", page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/${contentType === 'tv' ? 'airing_today' : 'latest'}`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/${contentType === "tv" ? "airing_today" : "latest"}`,
+        "get",
+        {},
+        {},
+        query
+      );
       setLatestMovie(res);
     } catch (error) {
       console.log(error);
@@ -169,7 +222,13 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US", page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/popular`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/popular`,
+        "get",
+        {},
+        {},
+        query
+      );
       setPopular(res);
     } catch (error) {
       console.log(error);
@@ -181,7 +240,13 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US", page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/top_rated`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/top_rated`,
+        "get",
+        {},
+        {},
+        query
+      );
       setTopRatedMovie(res);
     } catch (error) {
       console.log(error);
@@ -193,7 +258,13 @@ const AppProvider = ({ children }) => {
     try {
       const query = { language: "en-US", page: 1 };
       cleanQueryparam(query);
-      const res = await InvokeAPI(`${contentType}/${contentType === 'tv' ? 'on_the_air' : 'upcoming'}`, "get", {}, {}, query);
+      const res = await InvokeAPI(
+        `${contentType}/${contentType === "tv" ? "on_the_air" : "upcoming"}`,
+        "get",
+        {},
+        {},
+        query
+      );
       setUpcommingMovie(res);
     } catch (error) {
       console.log(error);
@@ -204,19 +275,75 @@ const AppProvider = ({ children }) => {
     setLoader(true);
     const query = { language: "en-US", page: 1, with_genres: grnre };
     cleanQueryparam(query);
-    const res = await InvokeAPI(`discover/${contentType}`, "get", {}, {}, query);
+    const res = await InvokeAPI(
+      `discover/${contentType}`,
+      "get",
+      {},
+      {},
+      query
+    );
     // res.results.filter((item)=>item.backdrop_path!==null || item.poster_path!==null)
     setLoader(false);
-    return res
+    return res;
+  };
 
-  }
+
+
+  const calAdvanture = async () => {
+    const res = await GetgaterogywiseMovie(12);
+    setAdvanture(res);
+  };
+  const callActionCate = async () => {
+    const res = await GetgaterogywiseMovie(28);
+    setAction(res);
+  };
+  const callHorror = async () => {
+    const res = await GetgaterogywiseMovie(27);
+    setHorror(res);
+  };
+  const callAnimation = async () => {
+    const res = await GetgaterogywiseMovie(16);
+    setAnimation(res);
+  };
+  const callRomance = async () => {
+    const res = await GetgaterogywiseMovie(10749);
+    setRomance(res);
+  };
+  const callDocumentory = async () => {
+    const res = await GetgaterogywiseMovie(99);
+    setDocumentory(res);
+  };
+  const callMusic = async () => {
+    const res = await GetgaterogywiseMovie(10402);
+    setMusic(res);
+  };
+
+  
+  useEffect(() => {
+    getTrendingMovie();
+    getPlayingNow();
+    getLatestMovie();
+    getTopRatedMovie();
+    getupcomingMovie();
+    getPopularMovie();
+    callActionCate();
+    calAdvanture();
+    callAnimation();
+    callDocumentory();
+    callHorror();
+    callMusic();
+    callRomance();
+  }, [contentType]);
+
 
 
   return (
     <AppContext.Provider
       value={{
         modal,
-        showHideModal, type, setType,
+        showHideModal,
+        type,
+        setType,
         loader,
         setLoader,
         getMovieInfo,
@@ -229,12 +356,43 @@ const AppProvider = ({ children }) => {
         playingNow,
         getLatestMovie,
         latestMovie,
-        getupcomingMovie,getAllEpisode,
+        getupcomingMovie,
+        getAllEpisode,
         upcommingMovie,
         getPopularMovie,
-        popular, openModal,episode,setSeriesEpisods,seriesEpisods,value, setValue,
-        getTopRatedMovie,searchMovieSerials,searchData,keywordData,
-        topRatedMovie, GetgaterogywiseMovie, setModal, featureMovie, fetchDiscover, fetchSingle, contentType, setContentType
+        popular,
+        openModal,
+        episode,
+        setSeriesEpisods,
+        seriesEpisods,
+        value,
+        setValue,
+        getTopRatedMovie,
+        searchMovieSerials,
+        searchData,
+        keywordData,
+        topRatedMovie,
+        GetgaterogywiseMovie,
+        setModal,
+        featureMovie,
+        fetchDiscover,
+        fetchSingle,
+        contentType,
+        setContentType,
+        action,
+        setAction,
+        advanture,
+        setAdvanture,
+        horror,
+        setHorror,
+        animation,
+        setAnimation,
+        documentory,
+        setDocumentory,
+        romance,
+        setRomance,
+        music,
+        setMusic,
       }}
     >
       {children}

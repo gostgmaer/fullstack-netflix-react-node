@@ -1,13 +1,32 @@
 import { ArrowBack, Flag, PlayArrow } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 import "mui-player/dist/mui-player.min.css";
 import MuiPlayer from "mui-player";
 import "./styles.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
+import InvokeAPI, { cleanQueryparam } from "../../utils/axiosSetup";
 const Watch = () => {
+  const [video, setvideo] = useState(null);
+  const [key, setKey] = useState('');
+  const [youtube, setyYutube] = useState('');
  
 const navigate= useNavigate()
+const id = useParams().id
+
+const getAllRelatedKeyword = async () => {
+  try {
+    const res = await InvokeAPI(`movie/${id}/videos?language=en-US`, "get", {}, {},{});
+    setvideo(res);
+    setyYutube(`https://www.youtube.com/watch?v=${res.results[0].key}`)
+  } catch (error) {
+    
+  }
+
+};
+useEffect(() => {
+  getAllRelatedKeyword()
+}, []);
 
 const backhandle =()=>{
     navigate('/');
@@ -31,7 +50,7 @@ const backhandle =()=>{
           width={"100%"}
           className="react-player"
           height="100vh"
-          url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+          url={youtube}
           controls
           loop
           volume={1}
