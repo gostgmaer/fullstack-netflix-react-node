@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import './app.scss';
+import './app.css';
 import { useGlobalAppContext } from './context/AppGlobalContent';
 import { useGlobalAuthContext } from './context/auth/Authcontext';
 import ProtectedRoute, { UnprotectedRoute } from './router/Router';

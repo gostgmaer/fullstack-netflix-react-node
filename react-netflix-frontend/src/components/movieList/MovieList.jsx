@@ -47,7 +47,7 @@ const MovieList = ({ heading, data }) => {
   };
 
   return (
-    <div className="movieList">
+    <div className="movieList ">
       <span className="listTitle">{heading}</span>
       <div className="listWrapper">
         {ismoved && (

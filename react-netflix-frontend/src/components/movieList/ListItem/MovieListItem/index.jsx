@@ -22,15 +22,15 @@ export default function MovieListItem({ index, item }) {
   const [isHovered, setIsHovered] = useState(false);
   const { modal, loader, setModal, showHideModal, getMovieInfo } =
     useGlobalAppContext();
-    const [video, setvideo] = useState(null);
-    const [key, setKey] = useState('');
-    const [youtube, setyYutube] = useState('');
+  const [video, setvideo] = useState(null);
+  const [key, setKey] = useState('');
+  const [youtube, setyYutube] = useState('');
 
   const navigate = useNavigate();
 
   const getAllRelatedKeyword = async (q) => {
     try {
-   
+
       const res = await InvokeAPI(
         `movie/${item.id}/videos?language=en-US`,
         "get",
@@ -39,8 +39,8 @@ export default function MovieListItem({ index, item }) {
         {}
       );
       setvideo(res);
-    setyYutube(`https://www.youtube.com/watch?v=${res.results[0].key}`)
-    } catch (error) {}
+      setyYutube(`https://www.youtube.com/watch?v=${res.results[0].key}`)
+    } catch (error) { }
   };
 
   const handleWatch = () => {
@@ -59,7 +59,7 @@ export default function MovieListItem({ index, item }) {
   useEffect(() => {
     if (isHovered === true) {
       getAllRelatedKeyword();
-    
+
     }
   }, [isHovered]);
 
@@ -71,33 +71,32 @@ export default function MovieListItem({ index, item }) {
         <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
       ) : (
         <div
-          className="listItem"
-          style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
+          className="listItem  "
+        style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         >
           <img
-            src={`${configurationDB.images.base_url}/${
-              item.backdrop_path
+            src={`${configurationDB.images.base_url}/${item.backdrop_path
                 ? configurationDB.images.backdrop_sizes[2]
                 : configurationDB.images.poster_sizes[4]
-            }${item?.backdrop_path ? item.backdrop_path : item?.poster_path}`}
+              }${item?.backdrop_path ? item.backdrop_path : item?.poster_path}`}
             alt=""
           />
           {isHovered && (
             <>
-            <ReactPlayer
-          width={"100%"}
-          className="react-player"
-          height="140px"
-          url={youtube}
-          controls
-          loop
-          volume={1}
-          progressInterval={500}
-          muted={false}
-          playing={true}
-        />
+              <ReactPlayer
+                width={"100%"}
+                className="react-player"
+                height="140px"
+                url={youtube}
+                controls
+                loop
+                volume={1}
+                progressInterval={500}
+                muted={false}
+                playing={true}
+              />
               {/* <ReactPlayer
             className="react-player"
             url="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
@@ -134,7 +133,7 @@ export default function MovieListItem({ index, item }) {
                   <div className="quality">
                     <span className="match">94% match</span>{" "}
                     <span className="age">U/A {"13+"}</span>{" "}
-                   
+
                     <span className="quality">HD</span>
                   </div>
                   <div className="genres">

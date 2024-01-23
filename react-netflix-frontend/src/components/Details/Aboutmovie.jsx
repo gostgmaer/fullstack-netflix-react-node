@@ -10,14 +10,14 @@ const Aboutmovie = () => {
       <div className="title">
         <h3>About {infoMovie?.title}</h3>
       </div>
-      <div className="contentDetails">
+      <div className="contentDetails p-5">
         {" "}
         <div className="director">
-          <span>Director:</span>
+          <span className=" h1">Director:</span>
           <ul>
-            {credits?.crew?.filter(item=>item.job==='Director')?.map((item) => (
-                <li key={item.id}>{item.name} </li>
-              ))}
+            {credits?.crew?.filter(item => item.job === 'Director')?.map((item) => (
+              <li key={item.id}>{item.name} </li>
+            ))}
           </ul>
         </div>
         <div className="cast">
@@ -34,9 +34,9 @@ const Aboutmovie = () => {
         <div className="writter">
           <span>Editor : </span>
           <ul>
-            {credits?.crew?.filter(item=>item.job==='Editor')?.map((item) => (
-                <li key={item.id}>{item.name} </li>
-              ))}
+            {credits?.crew?.filter(item => item.job === 'Editor')?.map((item) => (
+              <li key={item.id}>{item.name} </li>
+            ))}
           </ul>
         </div>
         <div className="genres">
