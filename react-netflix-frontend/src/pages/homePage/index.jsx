@@ -1,97 +1,54 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useGlobalAppContext } from "../../context/AppGlobalContent";
-import ReactPortal from "../../global/Modal/ReactPortal";
-import Topbar from "../../global/Topbar";
-import Login from "../login";
+
 import "./home.scss";
-import { Box } from "@mui/material";
+
 import Featured from "../../components/featured";
 import MovieList from "../../components/movieList/MovieList";
-import MovieListItem from "../../components/movieList/ListItem/MovieListItem";
 
 const Homepage = () => {
+
+  const data = [
+    { title: 'Title 1', description: 'Description 1' },
+    { title: 'Title 2', description: 'Description 2' },
+    { title: 'Title 3', description: 'Description 3' },
+    // Add more items as needed
+  ];
+
+
   const {
-    getTrendingMovie,
+
     trending,
-    getPlayingNow,
+
     playingNow,
-    getLatestMovie,
+
     latestMovie,
-    getupcomingMovie,
-    GetgaterogywiseMovie,
+
     upcommingMovie,
-    getPopularMovie,
+
     popular,
-    getTopRatedMovie,
+
     topRatedMovie,
-    contentType,
-    setContentType,
-    type,
-    setType,
+
     action,
-    setAction,
+
     advanture,
-    setAdvanture,
+
     horror,
-    setHorror,
+
     animation,
-    setAnimation,
+
     documentory,
-    setDocumentory,
+
     romance,
-    setRomance,
+
     music,
-    setMusic,
+
   } = useGlobalAppContext();
-
-  // const calAdvanture = async () => {
-  //   const res = await GetgaterogywiseMovie(12);
-  //   setAdvanture(res);
-  // };
-  // const callActionCate = async () => {
-  //   const res = await GetgaterogywiseMovie(28);
-  //   setAction(res);
-  // };
-  // const callHorror = async () => {
-  //   const res = await GetgaterogywiseMovie(27);
-  //   setHorror(res);
-  // };
-  // const callAnimation = async () => {
-  //   const res = await GetgaterogywiseMovie(16);
-  //   setAnimation(res);
-  // };
-  // const callRomance = async () => {
-  //   const res = await GetgaterogywiseMovie(10749);
-  //   setRomance(res);
-  // };
-  // const callDocumentory = async () => {
-  //   const res = await GetgaterogywiseMovie(99);
-  //   setDocumentory(res);
-  // };
-  // const callMusic = async () => {
-  //   const res = await GetgaterogywiseMovie(10402);
-  //   setMusic(res);
-  // };
-
-  // useEffect(() => {
-  //   getTrendingMovie();
-  //   getPlayingNow();
-  //   getLatestMovie();
-  //   getTopRatedMovie();
-  //   getupcomingMovie();
-  //   getPopularMovie();
-  //   callActionCate();
-  //   calAdvanture();
-  //   callAnimation();
-  //   callDocumentory();
-  //   callHorror();
-  //   callMusic();
-  //   callRomance();
-  // }, [contentType]);
 
   const { showHideModal } = useGlobalAppContext();
   return (
-    <div className="Homepage">
+    <div className="Homepage p-2">
       <Featured></Featured>
       {/* {playingNow && (
         <MovieList heading={"Continue to Watch"} data={playingNow?.results.filter(item=>item.backdrop_path || item.poster_path)} />
@@ -119,8 +76,30 @@ const Homepage = () => {
       <MovieList heading={"Documentory"} data={documentory} />{" "}
       <MovieList heading={"Animation"} data={animation} />
       <MovieList heading={"Music"} data={music} />
+
+   
+
     </div>
   );
 };
 
 export default Homepage;
+
+
+
+// NetflixCard.js
+
+
+const NetflixCard = ({ title, description }) => {
+  return (
+    <div className=" max-w-sm rounded overflow-hidden shadow-lg h-40 w-40">
+    <div className="absolute inset-0 transform transition-transform duration-1000 hover:scale-125 hover:-translate-y-2 bg-white opacity-0 hover:opacity-100">
+      <div className="px-6 py-4">
+        <div className="font-bold text-xl mb-2">{title}</div>
+        <p className="text-gray-700 text-base">{description}</p>
+      </div>
+    </div>
+  </div>
+  );
+};
+
