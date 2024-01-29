@@ -196,3 +196,6 @@ export function isDateWithinSixMonths(dateStr) {
   // Check if the difference is less than or equal to 6 months
   return monthDiff <= 12;
 }
+
+
+export const createNameArray = (idArray, dataArray) => idArray.map(id => dataArray.find(item => item.id === id).name);
