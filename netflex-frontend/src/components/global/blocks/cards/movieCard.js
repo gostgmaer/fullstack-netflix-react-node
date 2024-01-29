@@ -1,7 +1,7 @@
 "use client"
 import { configurationDB, genres } from "@/assets/data";
 import { poster_base_url } from "@/config/setting";
-import { isDateWithinSixMonths } from "@/helper/services";
+import { createNameArray, isDateWithinSixMonths } from "@/helper/services";
 import moment from "moment";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
@@ -14,7 +14,7 @@ const Moviecard = ({ data }) => {
     [router, data.id]
   );
   return (
-    <div className="group bg-zinc-950 col-span relative h-[12vw]">
+    <div className="group bg-gray-950 col-span relative h-[10vw]">
       <img
         onClick={redirectToWatch}
         // src={data.thumbnailUrl}
@@ -35,7 +35,7 @@ const Moviecard = ({ data }) => {
         sm:group-hover:opacity-0
         delay-0
         w-full
-        h-[12vw]
+        h-[10vw]
       "
       />
       <div
@@ -51,7 +51,7 @@ const Moviecard = ({ data }) => {
         delay-0
         w-full
         scale-0
-        group-hover:scale-[115%]
+        group-hover:scale-110 
         group-hover:-translate-y-[6vw]
         group-hover:translate-x-[0]
         group-hover:opacity-100
@@ -73,7 +73,7 @@ const Moviecard = ({ data }) => {
           shadow-xl
           rounded-t-md
           w-full
-          h-[12vw]
+          h-[10vw]
         "
         />
         <div
@@ -133,25 +133,20 @@ const Moviecard = ({ data }) => {
 
           </div>
           <div className="flex  gap-2 text-white mt-2 justify-start items-start text-sm">
-            {/* <span className=" font-semibold" >Genres : </span> */}
-            <ul className=" flex gap-1 justify-start flex-wrap ">
-              {genres
-                .filter((i) =>
-                  data.genre_ids.some((item) => item === i.id)
-                )
-                .map((j) => (
-                  <li key={j.id}>{j.name}, </li>
-                ))}
-            </ul>
+
+          <p>
+          {createNameArray(data.genre_ids, genres).toString()}
+          </p>
+          
           </div>
 
 
-          <div className="flex flex-row mt-4 gap-2 items-center">
+          {/* <div className="flex flex-row mt-4 gap-2 items-center">
             <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
           </div>
           <div className="flex flex-row items-center gap-2 mt-4 text-[8px] text-white lg:text-sm">
             <p>{data.genre}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
