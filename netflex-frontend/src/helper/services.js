@@ -179,3 +179,20 @@ export const exportExcelFile = (data, columnobj, filename) => {
   exportData(xlsdata, filename);
 
 }
+
+export function isDateWithinSixMonths(dateStr) {
+  // Convert input string to Date object
+  var givenDate = new Date(dateStr);
+  
+  // Get current date
+  var currentDate = new Date();
+  
+  // Calculate difference in milliseconds
+  var timeDiff = currentDate.getTime() - givenDate.getTime();
+  
+  // Convert difference to months
+  var monthDiff = (currentDate.getFullYear() - givenDate.getFullYear()) * 12 + currentDate.getMonth() - givenDate.getMonth();
+  
+  // Check if the difference is less than or equal to 6 months
+  return monthDiff <= 12;
+}

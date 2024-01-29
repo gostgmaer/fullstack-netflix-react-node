@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -11,9 +12,9 @@ const Input = ({ label, type, additionalAttrs, classes, icon, id }) => {
   return (
     <div className="flex flex-col w-full">
       <label className="block">
-        <span className=" block text-sm capitalize font-semibold  mb-1.5">
-          {label} :{" "}
-        </span>
+      {label &&  <span className=" block text-sm capitalize font-semibold  mb-1.5">
+          {label} :
+        </span>}
         <span
           className={`flex items-center peer  w-full transition duration-200  rounded-md bg-transparent focus:ring-[0.6px]  ${
             icon && "border pl-3.5 h-10 leading-[40px]"

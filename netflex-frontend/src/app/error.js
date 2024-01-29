@@ -1,6 +1,4 @@
-// pages/500.js
-import React from 'react';
-
+"use client"
 const Custom500 = () => {
   return (
     <div className="flex items-center justify-center h-screen">
