@@ -38,9 +38,9 @@ export default SelectField;
 
 export const Select = ({ options, id, label, additionalAttrs, placeholder, optionkeys = { key: "", value: "" } }) => {
   return (
-    <div className="">
+    <div className={additionalAttrs.parentClass}>
       {label && (
-        <label htmlFor={id} className=" block text-sm mb-1.5">
+        <label htmlFor={id} className={` block  mb-1.5 ${additionalAttrs.labelClass}`}>
           {label}
         </label>
       )}
@@ -48,14 +48,14 @@ export const Select = ({ options, id, label, additionalAttrs, placeholder, optio
         {...additionalAttrs}
         name={id}
         id={id}
-        className="block w-full placeholder:text-gray-600 px-2 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+        className={`block w-full placeholder:text-gray-600 px-2 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 capitalize ${additionalAttrs.class}`}
       >
         <option value="" className="text-gray-400">{placeholder ? placeholder : "Select"}</option>
         {options.map((option) => (
           <option
             key={option[optionkeys.key]}
             value={option[optionkeys.key]}
-            className=" capitalize"
+            className="capitalize"
           >
             {option[optionkeys.value]}
           </option>

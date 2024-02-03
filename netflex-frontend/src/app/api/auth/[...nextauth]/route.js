@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 import NextAuth from 'next-auth'
 import { baseurl } from "@/config/setting";
 import { jwtDecode } from "jwt-decode";
+
 export const handler = NextAuth({
   providers: [
     CredentialsProvider({
@@ -23,7 +24,7 @@ export const handler = NextAuth({
           password: credentials.password,
         }
 
-        const res = await fetch(baseurl + `/user/auth/login`, {
+        const res = await fetch(baseurl + `/authentication/user/signin`, {
           method: 'POST',
           body: JSON.stringify(payload),
           headers: {
