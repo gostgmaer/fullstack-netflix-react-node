@@ -12,7 +12,7 @@ export const facebookClient=process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID
 export const facebookSecret=process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_SECRET
 export const moviebaseUrl=process.env.MOVIE_API_BASE_URL
 export const movieAPikey=process.env.MOVIE_API_TOEKN
-export const poster_base_url=process.env.MOVIE_POSTER_BASE_URL
+export const poster_base_url='http://image.tmdb.org/t/p/'
 
 export const moviequeryString = {
     api_key: movieAPikey

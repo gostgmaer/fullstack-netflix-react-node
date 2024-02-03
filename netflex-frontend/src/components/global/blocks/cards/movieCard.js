@@ -13,8 +13,9 @@ const Moviecard = ({ data }) => {
     () => router.push(`/watch/${data.id}`),
     [router, data.id]
   );
+  console.log(poster_base_url);
   return (
-    <div className="group bg-gray-950 col-span relative h-[10vw]">
+    <div className="group bg-gray-950 col-span relative h-[10vw] transition-transform duration-500 ease-in-out transition-z-index transition-transform-origin">
       <img
         onClick={redirectToWatch}
         // src={data.thumbnailUrl}

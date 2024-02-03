@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import XLSX from "xlsx";
+// import XLSX from "xlsx";
 import moment from "moment";
 // Export the calculateTimeGap function with maxGap parameter
 export function calculateTimeGap(date1, date2, maxGap) {
@@ -154,31 +154,31 @@ export function storeCookiesOfObject(data) {
 }
 
 
-export const exportData = (data, filename) => {
-  const worksheet = XLSX.utils.json_to_sheet(data);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+// export const exportData = (data, filename) => {
+//   const worksheet = XLSX.utils.json_to_sheet(data);
+//   const workbook = XLSX.utils.book_new();
+//   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-  return XLSX.writeFile(workbook, `${filename}_${Date.now()}.xlsx`);
-};
-
-
-export const exportExcelFile = (data, columnobj, filename) => {
-
-  var xlsdata = [];
-
-  xlsdata = data.map(item => {
-    const newItem = {};
-    for (const key in columnobj) {
-      newItem[columnobj[key]] = item[key];
-    }
-    return newItem;
-  });
+//   return XLSX.writeFile(workbook, `${filename}_${Date.now()}.xlsx`);
+// };
 
 
-  exportData(xlsdata, filename);
+// export const exportExcelFile = (data, columnobj, filename) => {
 
-}
+//   var xlsdata = [];
+
+//   xlsdata = data.map(item => {
+//     const newItem = {};
+//     for (const key in columnobj) {
+//       newItem[columnobj[key]] = item[key];
+//     }
+//     return newItem;
+//   });
+
+
+//   exportData(xlsdata, filename);
+
+// }
 
 export function isDateWithinSixMonths(dateStr) {
   // Convert input string to Date object

@@ -1,7 +1,5 @@
-import Input from "@/components/global/fields/input";
+
 import { LoginForm } from "@/components/pages/form/login";
-import Image from "next/image";
-import { MdArrowRight } from "react-icons/md";
 
 export default function Home() {
     return (
