@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import NextAuthProvider from "@/context/sessionContext";
 import { AuthContextProvider } from "@/context/authcontext";
 import Spinner from "@/components/global/blocks/loader/Spinner";
+import ModalOverLay from "@/components/layout/Dialogpopup";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -17,15 +18,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <NextAuthProvider>
-
       <AuthContextProvider>
         <html lang="en">
           <body className={inter.className} suppressHydrationWarning={true}>
             <Suspense fallback={<Spinner></Spinner>}>
 
-              <main className="bg-light w-full min-h-screen text-dark">
+              <main className="bg-light w-full min-h-screen text-dark overflow-hidden">
                 {children}
+               
               </main>
+              <ModalOverLay />
             </Suspense>
             <ToastContainer />
           </body>
