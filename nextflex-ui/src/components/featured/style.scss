@@ -1,0 +1,53 @@
+
+
+.Featured{
+    height: 90vh;
+    background-color:#fff ;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.05) 0%,
+        rgb(0, 0, 0) 100%
+      );
+
+    .category {
+        position: absolute;
+        top: 80px;
+        left: 50px;
+        font-size: 30px;
+        font-weight: 500;
+        color: white;
+        display: flex;
+        align-items: center;
+    
+        select {
+          cursor: pointer;
+          background-color: var(--maincolor);
+          border: 1px solid white;
+          color: white;
+          margin-left: 20px;
+          padding: 5px;
+        }
+      }
+    .heroimage{
+       
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        opacity: 0.5;
+    }
+    .info{
+        bottom: 10%;
+        width: 35%;
+        padding: 0 50px;
+       display: flex;
+       flex-direction: column;
+        gap: 20px;
+        color: white;
+        .desc{
+           
+        }
+        .movieLogo{
+            width: 90%;
+        }
+    }
+}
