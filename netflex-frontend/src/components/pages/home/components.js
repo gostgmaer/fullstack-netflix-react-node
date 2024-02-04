@@ -1,4 +1,4 @@
-
+'use client'
 import { MovieSlider } from "@/components/global/blocks/sliderList";
 import { Select } from "@/components/global/fields/SelectField";
 import {
@@ -26,6 +26,7 @@ export const Genre = [
 ];
 
 export const Feature = (props) => {
+    console.log(props);
     return (
         <div className=" min-h-screen relative w-full">
             <div className=" min-h-screen absolute top-0 z-0">
@@ -37,7 +38,7 @@ export const Feature = (props) => {
                         options={Genre}
                         id={"Genre"}
                         label={"Tv Shows"}
-                        additionalAttrs={{ class: "w-40 text-white bg-[#00000060]", parentClass: "flex gap-10 items-center", labelClass: 'text-3xl font-Semibold' }}
+                        additionalAttrs={{ class: "!w-40 text-white bg-[#00000060]", parentClass: "flex gap-10 items-center", labelClass: 'text-3xl font-Semibold' }}
                         placeholder={"Select"}
                         optionkeys={{ key: "lavel", value: "value" }}
                     />

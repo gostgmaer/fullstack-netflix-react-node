@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
           <body className={inter.className} suppressHydrationWarning={true}>
             <Suspense fallback={<Spinner></Spinner>}>
 
-              <main className="bg-light w-full min-h-screen text-dark">
+              <main className="bg-light w-full min-h-screen text-dark overflow-hidden">
                 {children}
               </main>
             </Suspense>

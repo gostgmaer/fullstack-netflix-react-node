@@ -13,7 +13,7 @@ const Moviecard = ({ data }) => {
     () => router.push(`/watch/${data.id}`),
     [router, data.id]
   );
-  console.log(poster_base_url);
+
   return (
     <div className="group bg-gray-950 col-span relative h-[10vw] transition-transform duration-500 ease-in-out transition-z-index transition-transform-origin">
       <img
@@ -34,7 +34,7 @@ const Moviecard = ({ data }) => {
         rounded-md
         group-hover:opacity-90
         sm:group-hover:opacity-0
-        delay-0
+        delay-500
         w-full
         h-[10vw]
       "
@@ -45,17 +45,18 @@ const Moviecard = ({ data }) => {
         absolute
         top-0
         transition
-        duration-1000
+        duration-500
         z-10
         invisible
         sm:visible
-        delay-0
+        delay-300
         w-full
         scale-0
         group-hover:scale-110 
         group-hover:-translate-y-[6vw]
         group-hover:translate-x-[0]
         group-hover:opacity-100
+        group-hover:z-50
       "
       >
         <img
@@ -135,7 +136,7 @@ const Moviecard = ({ data }) => {
           </div>
           <div className="flex  gap-2 text-white mt-2 justify-start items-start text-sm">
 
-          <p>
+          <p className=" break-words overflow-auto">
           {createNameArray(data.genre_ids, genres).toString()}
           </p>
           
