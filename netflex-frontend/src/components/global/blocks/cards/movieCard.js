@@ -1,18 +1,47 @@
 "use client"
 import { configurationDB, genres } from "@/assets/data";
+import Moviedetails from "@/components/blocks/details";
+import ModalDialog from "@/components/layout/modalpopup";
 import { poster_base_url } from "@/config/setting";
 import { createNameArray, isDateWithinSixMonths } from "@/helper/services";
+import { servermovieApi } from "@/lib/network/servermethod";
 import moment from "moment";
-import { useRouter } from "next/navigation";
-import React, { useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import React, { useCallback, useState } from "react";
 import { MdAdd, MdChevronRight, MdPlayArrow, MdThumbUp } from "react-icons/md";
-const Moviecard = ({ data }) => {
 
+const Moviecard = ({ data }) => {
+  // console.log(data);
+  const [modal, setModal] = useState(false);
+  // const [data, setData] = useState(undefined);
+  const [item, setItem] = useState(undefined);
+
+const searchparam = useSearchParams()
   const router = useRouter();
   const redirectToWatch = useCallback(
     () => router.push(`/watch/${data.id}`),
     [router, data.id]
   );
+
+  const handleOpenModal = async (second) => {
+    router.push(`?id=${data.id}`)
+    const id = searchparam.get('id')
+    if (id) {
+      const result = await getMovieDetails(data.id)
+      if (result) {
+        setItem(result)
+        setModal(true)
+      }
+    } else {
+      const result = await getMovieDetails(data.id)
+      if (result) {
+        setItem(result)
+        setModal(true)
+      }
+    }
+
+
+  }
 
   return (
     <div className="group bg-gray-950 col-span relative h-[10vw] transition-transform duration-500 ease-in-out transition-z-index transition-transform-origin">
@@ -121,7 +150,7 @@ const Moviecard = ({ data }) => {
             </div>
 
 
-            <div className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300">
+            <div onClick={handleOpenModal} className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-10 lg:h-10 border-white border-2 rounded-full flex justify-center items-center transition hover:border-neutral-300">
               <MdChevronRight className="text-white group-hover/item:text-neutral-300 w-4 lg:w-6" />
             </div>
           </div>
@@ -136,19 +165,15 @@ const Moviecard = ({ data }) => {
           </div>
           <div className="flex  gap-2 text-white mt-2 justify-start items-start text-sm">
 
-          <p className=" break-words overflow-auto">
-          {createNameArray(data.genre_ids, genres).toString()}
-          </p>
-          
+            <p className=" break-words overflow-auto">
+              {createNameArray(data.genre_ids, genres).toString()}
+            </p>
+
           </div>
 
 
-          {/* <div className="flex flex-row mt-4 gap-2 items-center">
-            <p className="text-white text-[10px] lg:text-sm">{data.duration}</p>
-          </div>
-          <div className="flex flex-row items-center gap-2 mt-4 text-[8px] text-white lg:text-sm">
-            <p>{data.genre}</p>
-          </div> */}
+          {modal && <Moviedetails modal={modal} setModal={setModal} data={item} />}
+
         </div>
       </div>
     </div>
@@ -156,3 +181,30 @@ const Moviecard = ({ data }) => {
 };
 
 export default Moviecard;
+
+
+const getMovieDetails = async (id) => {
+  // const id = useSearchParams().get('id');
+  const query = { language: "en-US", append_to_response: "videos,images" };
+  const params = {
+    method: "get",
+    header: {},
+    query: { ...query },
+  };
+  const result = await servermovieApi(
+    `/movie/${id}`,
+    params
+  );
+  const querysimilar = { language: "en-US", append_to_response: null, page: 1 };
+  const paramsSimilar = {
+    method: "get",
+    header: {},
+    query: { ...querysimilar },
+  };
+  const similar = await servermovieApi(
+    `/movie/${id}/similar`,
+    {params:paramsSimilar}
+  );
+  // console.log(similar);
+  return {result,similar}
+}

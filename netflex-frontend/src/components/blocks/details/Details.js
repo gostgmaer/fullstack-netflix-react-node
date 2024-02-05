@@ -1,11 +1,11 @@
-import { useGlobalAppContext } from "@/context/context";
+
+import { millisecondsToStr } from "@/helper/services";
 import { MessageOutlined } from "@mui/icons-material";
 import { Button, IconButton, Tooltip } from "@mui/material";
 import moment from "moment";
 import React from "react";
 
-const Details = () => {
-  const { getMovieInfo, infoMovie, similar, credits } = useGlobalAppContext();
+const Details = (props) => {
 
 
   return (
@@ -13,9 +13,9 @@ const Details = () => {
       <div className="left">
         <div className="matches">
           <strong>87% Match</strong>
-          <span>{moment(infoMovie?.release_date?infoMovie?.release_date:infoMovie?.first_air_date).format("YYYY")}</span>
+          <span>{moment(props.data?.release_date?props.data?.release_date:props.data?.first_air_date).format("YYYY")}</span>
           <span className="age">U/A 16+</span>
-          {/* <span>{infoMovie?.runtime?millisecondsToStr(infoMovie?.runtime * 60 * 1000):`${infoMovie?.number_of_seasons} Session`}</span> */}
+          <span>{props.data?.runtime?millisecondsToStr(props.data?.runtime * 60 * 1000):`${props.data?.number_of_seasons} Session`}</span>
           <span className="quality">HD</span>
           <Tooltip
             sx={{
@@ -32,7 +32,7 @@ const Details = () => {
           </Tooltip>
         </div>
         <div className="description">
-          {`${infoMovie?.overview.substring(0, 220)}...`}
+          {`${props.data?.overview.substring(0, 220)}...`}
         </div>
       </div>
       <div className="right">
@@ -40,7 +40,7 @@ const Details = () => {
           <span>Cast: </span>
           <ul>
             <ul>
-              {credits?.cast
+              {props.data?.cast
                 ?.sort((a, b) => b.popularity - a.popularity)
                 ?.slice(0, 3)
                 ?.map((item) => (
@@ -52,7 +52,7 @@ const Details = () => {
         <div className="genres">
           <span>Genres: </span>
           <ul>
-            {infoMovie?.genres.map((item) => (
+            {props.data?.genres.map((item) => (
               <li key={item.id}>{item.name}, </li>
             ))}
           </ul>

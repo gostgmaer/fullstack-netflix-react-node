@@ -1,30 +1,49 @@
-"use client"
 import { Fragment, useState } from "react";
-import VideoContent from "./VideoContent";
-import Aboutmovie from "./Aboutmovie";
-import MoreList from "./MoreList";
-import Episodes from "./Episodes";
-const Moviedetails = () => {
-const [epi, setepi] = useState();
 
+// import Aboutmovie from "./Aboutmovie";
+import MoreList from "./MoreList";
+// import Episodes from "./Episodes";
+import ModalDialog from "@/components/layout/modalpopup";
+// import Details from "./Details";
+import { servermovieApi } from "@/lib/network/servermethod";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import VideoContent from "./VideoContent";
+const Moviedetails =  ({ data, modal, setModal }) => {
+const router= useRouter()
+const pathname = usePathname()
+  const handleClose = (second) => { 
+    setModal(false)
+    router.push(pathname)
+   }
+
+console.log(data);
 
 
   return (
     <Fragment>
-      <div className="Moviedetails">
-        <div className="video">
-          <VideoContent />
+
+      {modal && <ModalDialog isOpen={modal} setIsOpen={setModal}>
+        <div className="Moviedetails z">
+          <div className="video">
+            <VideoContent data={data} handleClose={handleClose} />
+          </div>
+          <div className="contentElements">
+           
+            {/* < Episodes /> */}
+            <MoreList data= {data} />
+            {/* <Aboutmovie /> */}
+          </div>
         </div>
-        <div className="contentElements">
-          {/* <Details/> */}
-          < Episodes/>
-          <MoreList />
-          <Aboutmovie />
-        </div>
-      </div>
-     
+      </ModalDialog>}
+
+
     </Fragment>
   );
 };
 
 export default Moviedetails;
+
+
+
+
+

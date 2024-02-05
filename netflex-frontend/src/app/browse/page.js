@@ -3,11 +3,12 @@ import React from 'react'
 import Index from '@/components/pages/home'
 import { servermovieApi } from '@/lib/network/servermethod'
 import Link from 'next/link'
+import ModalDialog from '@/components/layout/modalpopup'
 
 const Page = async (props) => {
 
-  const record = await getAllRecord(props?.searchParams)
-  console.log(record);
+  // const record = await getAllRecord(props?.searchParams)
+  // console.log(record);
 
 
   return (
@@ -18,9 +19,7 @@ const Page = async (props) => {
       <Index />
       <div>
 
-        <Link href="?modal=true">
-          <button type="button" className="bg-blue-500 text-white p-2">Open Modal</button>
-        </Link>
+       
       </div>
     </div>
   )
@@ -29,19 +28,19 @@ const Page = async (props) => {
 export default Page
 
 
-export const getAllRecord = async (query) => {
+// export const getAllRecord = async (query) => {
 
-  const params = {
-    method: "get",
-    header: {},
-    query: { ...query },
-  };
-  const result = await servermovieApi(
-    `/movie/latest`,
-    params
-  );
+//   const params = {
+//     method: "get",
+//     header: {},
+//     query: { ...query },
+//   };
+//   const result = await servermovieApi(
+//     `/movie/latest`,
+//     params
+//   );
 
 
-  return result
+//   return result
 
-}
+// }

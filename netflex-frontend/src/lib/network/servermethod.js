@@ -1,6 +1,6 @@
 
 
-import { baseurl, movieAPikey, moviebaseUrl } from "@/config/setting";
+import { baseurl, movieAPikey, moviebaseUrl, moviequeryString } from "@/config/setting";
 import axios from "axios";
 
 export const serverMethod = async (endpint, params) => {
@@ -31,7 +31,7 @@ export const servermovieApi = async (endpint, params) => {
     headers: {
       ...params?.header,
     },
-    params: { ...params?.query, api_key: movieAPikey },
+    params: { ...moviequeryString, ...params?.query,  },
     data: params?.data,
   };
   let response;

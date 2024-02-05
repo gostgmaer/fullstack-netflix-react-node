@@ -1,9 +1,10 @@
 import React from 'react'
 import { Feature } from './components'
 import { MovieSlider } from '@/components/global/blocks/sliderList'
+// import { MovieSlider } from '@/components/global/blocks/sliderList'
 import { moviedata } from '@/helper/data'
-import { serverMethod, servermovieApi } from '@/lib/network/servermethod'
-import Dialogpopup from '@/components/layout/Dialogpopup'
+// import { serverMethod, servermovieApi } from '@/lib/network/servermethod'
+// import Dialogpopup from '@/components/layout/Dialogpopup'
 
 const Index = async (prams) => {
 
@@ -18,7 +19,7 @@ const Index = async (prams) => {
           <MovieSlider
             data={moviedata} title={"Featured"} />
         </div>
-        <div className=' '>
+        {/* <div className=' '>
           <MovieSlider
             data={moviedata} title={"Featured"} />
         </div>
@@ -65,10 +66,10 @@ const Index = async (prams) => {
         <div className=' '>
           <MovieSlider
             data={moviedata} title={"Featured"} />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <Dialogpopup/>
-        </div>
+        </div> */}
       </div>
     </div>
   )

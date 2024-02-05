@@ -1,22 +1,29 @@
-
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-
-import "./style.scss";
-import { useGlobalAppContext } from "@/context/context";
+// import { useGlobalAppContext } from "@/context/context";
 import { configurationDB } from "@/assets/data";
 import { MdPlayArrow } from "react-icons/md";
 import { Button, IconButton } from "@mui/material";
-import { Add, Close, Details, ThumbUp, VolumeOff, VolumeUp } from "@mui/icons-material";
+import {
+  Add,
+  Close,
+  ThumbUp,
+  VolumeOff,
+  VolumeUp,
+} from "@mui/icons-material";
+import { usePathname } from "next/navigation";
+import Details from "./Details";
 
-const VideoContent = () => {
-  const { modal, showHideModal, infoMovie } = useGlobalAppContext();
+const VideoContent = (props) => {
+  const pathname = usePathname();
   const [youtube, setyYutube] = useState("");
-  const [post, setPost] = useState(false);
+  // const [post, setPost] = useState(false);
+
+  const data =props.data
+
 
   const [mute, setMute] = useState(false);
-
 
   const handleWatch = () => {
     //  setIsHovered(!isHovered)
@@ -44,17 +51,18 @@ const VideoContent = () => {
 
   // }, [infoMovie.id]);
 
+
   const trailer =
     "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
   return (
     <div className="VideoContent">
       <div className="content">
-        {post ?  (
+        {data ? (
           <ReactPlayer
             width={"100%"}
             className="react-player"
             height="100%"
-            url={youtube}
+            url={trailer}
             controls
             loop
             volume={1}
@@ -62,24 +70,25 @@ const VideoContent = () => {
             muted={false}
             playing={true}
           />
-        ): (
+        ) : (
+         
           <img
             src={`${configurationDB.images.base_url}/${
-              infoMovie.backdrop_path
+              data.backdrop_path
                 ? configurationDB.images.backdrop_sizes[2]
                 : configurationDB.images.poster_sizes[4]
             }${
-              infoMovie?.backdrop_path
-                ? infoMovie.backdrop_path
-                : infoMovie?.poster_path
+              data?.backdrop_path
+                ? data.backdrop_path
+                : data?.poster_path
             }`}
-            alt={infoMovie?.title ? infoMovie.title : infoMovie.name}
+            alt={data?.title ? data.title : data.name}
           />
         )}
 
         <div className="controller">
           <div className="text">
-            <span>{infoMovie?.title ? infoMovie.title : infoMovie.name}</span>
+            <span>{data?.title ? data.title : data.name}</span>
           </div>
           <div className="icons">
             <div className="leftIcon">
@@ -102,11 +111,11 @@ const VideoContent = () => {
           </div>
         </div>
         <div className="closeIcon">
-          <IconButton onClick={showHideModal}>
+          <IconButton onClick={props.handleClose} >
             <Close />
           </IconButton>
         </div>
-        <Details />
+        <Details data={props.data} />
       </div>
     </div>
   );

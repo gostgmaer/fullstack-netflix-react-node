@@ -3,7 +3,7 @@ import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import { Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 
-const MoreList = () => {
+const MoreList = (props) => {
   const [expandeValue, setExpandeValue] = useState(9);
 const similar ={}
   const getUniqueBy = (arr, prop) => {
