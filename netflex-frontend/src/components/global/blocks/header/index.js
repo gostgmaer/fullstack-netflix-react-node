@@ -22,10 +22,10 @@ function classNames(...classes) {
 const Header = () => {
   const [scroll, setScroll] = useState(false);
 
-  window.onscroll = () => {
-    setScroll(window.pageYOffset >= 1 ? true : false);
-    return () => (window.onscroll = null);
-  };
+  // window.onscroll = () => {
+  //   setScroll(window.pageYOffset >= 1 ? true : false);
+  //   return () => (window.onscroll = null);
+  // };
   
 
 

@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
                 {children}
                
               </main>
-              <ModalOverLay />
+           
             </Suspense>
             <ToastContainer />
           </body>

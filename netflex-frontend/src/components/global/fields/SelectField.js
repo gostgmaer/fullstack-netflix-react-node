@@ -51,9 +51,9 @@ export const Select = ({ options, id, label, additionalAttrs, placeholder, optio
         className={`block w-full placeholder:text-gray-600 px-2 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 capitalize ${additionalAttrs.class}`}
       >
         <option value="" className="text-gray-400">{placeholder ? placeholder : "Select"}</option>
-        {options.map((option) => (
+        {options.map((option,index) => (
           <option
-            key={option[optionkeys.key]}
+            key={index}
             value={option[optionkeys.key]}
             className="capitalize"
           >
