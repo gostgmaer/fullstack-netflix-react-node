@@ -16,7 +16,7 @@ const Moviecard = ({ data }) => {
   // const [data, setData] = useState(undefined);
   const [item, setItem] = useState(undefined);
 
-const searchparam = useSearchParams()
+  const searchparam = useSearchParams()
   const router = useRouter();
   const redirectToWatch = useCallback(
     () => router.push(`/watch/${data.id}`),
@@ -24,6 +24,7 @@ const searchparam = useSearchParams()
   );
 
   const handleOpenModal = async (second) => {
+    setModal(false)
     router.push(`?id=${data.id}`)
     const id = searchparam.get('id')
     if (id) {
@@ -191,7 +192,7 @@ const getMovieDetails = async (id) => {
     header: {},
     query: { ...query },
   };
-  const result = await servermovieApi(
+  const details = await servermovieApi(
     `/movie/${id}`,
     params
   );
@@ -203,8 +204,26 @@ const getMovieDetails = async (id) => {
   };
   const similar = await servermovieApi(
     `/movie/${id}/similar`,
-    {params:paramsSimilar}
+    { params: paramsSimilar }
   );
+
+
+  const paramscredits = {
+    method: "get",
+    header: {},
+    query: { language: "en-US" },
+  };
+  const credits = await servermovieApi(
+    `/movie/${id}/credits`,
+    { params: paramscredits }
+  );
+  const videos = await servermovieApi(
+    `/movie/${id}/videos`,
+    { params: paramscredits }
+  );
+  // const 
+
+
   // console.log(similar);
-  return {result,similar}
+  return { details, similar, credits, videos }
 }

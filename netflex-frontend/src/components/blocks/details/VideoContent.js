@@ -21,7 +21,7 @@ const VideoContent = (props) => {
   // const [post, setPost] = useState(false);
 
   const data =props.data
-
+console.log(props);
 
   const [mute, setMute] = useState(false);
 
@@ -30,39 +30,18 @@ const VideoContent = (props) => {
     // navigate(`/watch/${infoMovie.id}`);
     // console.log(navigate);
   };
-  // const getAllRelatedKeyword = async (q) => {
-  //   setPost(false);
-  //   try {
-  //     const res = await InvokeAPI(
-  //       `movie/${infoMovie.id}/videos?`,
-  //       "get",
-  //       {},
-  //       {},
-  //       {}
-  //     );
-  //     setyYutube(`https://www.youtube.com/watch?v=${res.results[0].key}`);
-  //     setPost(true);
-  //   } catch (error) {}
-  // };
-
-  // useEffect(() => {
-  //   setPost(false);
-  //   getAllRelatedKeyword();
-
-  // }, [infoMovie.id]);
 
 
-  const trailer =
-    "https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c0fd273d2c6d9a064f3ae35579b2bbdf&profile_id=139&oauth2_token_id=57447761";
+  
   return (
     <div className="VideoContent">
-      <div className="content">
+      <div className="h-[575px] relative bg-gradient-to-t from-black/20 via-transparent to-black">
         {data ? (
           <ReactPlayer
             width={"100%"}
-            className="react-player"
+            className="  [&_video]:object-cover [&_.ytp-show-cards-title]:hidden bg-black"
             height="100%"
-            url={trailer}
+            url={`https://www.youtube.com/watch?v=${props.videos.results[0].key}`}
             controls
             loop
             volume={1}
@@ -85,21 +64,22 @@ const VideoContent = (props) => {
             alt={data?.title ? data.title : data.name}
           />
         )}
+        <div></div>
 
-        <div className="controller">
-          <div className="text">
+        <div className="controller absolute top-[50%] px-10  text-white w-full mx-auto bg-gradient-to-t from-black/50 via-transparent to-black/10">
+          <div className=" text-2xl">
             <span>{data?.title ? data.title : data.name}</span>
           </div>
-          <div className="icons">
-            <div className="leftIcon">
+          <div className="icons flex mt-5 justify-between w-full [&_.MuiIconButton-root]:!text-gray-400 [&_.MuiIconButton-root]:!bg-black/65 hover:[&_.MuiIconButton-root]:!border-gray-200 hover:[&_.MuiIconButton-root]:!text-gray-50 [&_.MuiIconButton-root]:!border">
+            <div className="flex gap-3 items-start ">
              
-              <Button onClick={handleWatch} startIcon={<MdPlayArrow />}>
+              <Button onClick={handleWatch} className="px-4 py-1 !bg-gray-200 !text-gray-950" startIcon={<MdPlayArrow />}>
                 Play
               </Button>
-              <IconButton>
+              <IconButton className="   ">
                 <Add />
               </IconButton>
-              <IconButton>
+              <IconButton className=" ">
                 <ThumbUp />
               </IconButton>
             </div>

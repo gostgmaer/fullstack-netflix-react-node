@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 
-// import Aboutmovie from "./Aboutmovie";
+import Aboutmovie from "./Aboutmovie";
 import MoreList from "./MoreList";
 // import Episodes from "./Episodes";
 import ModalDialog from "@/components/layout/modalpopup";
@@ -8,15 +8,15 @@ import ModalDialog from "@/components/layout/modalpopup";
 import { servermovieApi } from "@/lib/network/servermethod";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import VideoContent from "./VideoContent";
-const Moviedetails =  ({ data, modal, setModal }) => {
-const router= useRouter()
-const pathname = usePathname()
-  const handleClose = (second) => { 
+const Moviedetails = ({ data, modal, setModal }) => {
+  const router = useRouter()
+  const pathname = usePathname()
+  const handleClose = (second) => {
     setModal(false)
     router.push(pathname)
-   }
+  }
 
-console.log(data);
+  console.log(data);
 
 
   return (
@@ -25,13 +25,13 @@ console.log(data);
       {modal && <ModalDialog isOpen={modal} setIsOpen={setModal}>
         <div className="Moviedetails z">
           <div className="video">
-            <VideoContent data={data} handleClose={handleClose} />
+            <VideoContent data={data.details} videos={data.videos} handleClose={handleClose} />
           </div>
           <div className="contentElements">
-           
+
             {/* < Episodes /> */}
-            <MoreList data= {data} />
-            {/* <Aboutmovie /> */}
+            <MoreList data={data.similar} />
+            <Aboutmovie data={{ details: data.details, credits: data.credits }} />
           </div>
         </div>
       </ModalDialog>}

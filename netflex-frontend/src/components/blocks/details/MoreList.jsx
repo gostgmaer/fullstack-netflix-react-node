@@ -4,6 +4,7 @@ import { Divider, IconButton } from "@mui/material";
 import React, { useState } from "react";
 
 const MoreList = (props) => {
+  console.log(props);
   const [expandeValue, setExpandeValue] = useState(9);
 const similar ={}
   const getUniqueBy = (arr, prop) => {
@@ -23,8 +24,10 @@ const similar ={}
       <div className="title">
         <h3>More like this: </h3>
       </div>
-      <div className="elements">
-        {getUniqueBy(similar?.results, "id")?.filter(item=>item.backdrop_path || item.poster_path)?.slice(0, expandeValue).map((item) => (
+      <div className="grid grid-cols-3 gap-2">
+
+
+        {getUniqueBy(props?.data.results, "id")?.filter(item=>item.backdrop_path || item.poster_path)?.slice(0, expandeValue).map((item) => (
           <Moviecard key={item.id} data={item} />
         ))}
       </div>

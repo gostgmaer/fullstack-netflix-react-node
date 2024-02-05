@@ -9,7 +9,7 @@ const Details = (props) => {
 
 
   return (
-    <div className="Details">
+    <div className="flex absolute bottom-10 pt-10 justify-between items-start shadow-md bg-gradient-to-t from-transparent via-transparent to-black/10 ">
       <div className="left">
         <div className="matches">
           <strong>87% Match</strong>
