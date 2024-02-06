@@ -25,7 +25,7 @@ const Moviedetails = ({ data, modal, setModal }) => {
       {modal && <ModalDialog isOpen={modal} setIsOpen={setModal}>
         <div className="Moviedetails z">
           <div className="video">
-            <VideoContent data={data.details} videos={data.videos} handleClose={handleClose} />
+            <VideoContent data={data.details} credits= {data.credits} handleClose={handleClose} />
           </div>
           <div className="contentElements">
 

@@ -35,13 +35,13 @@ console.log(props);
   
   return (
     <div className="VideoContent">
-      <div className="h-[575px] relative bg-gradient-to-t from-black/20 via-transparent to-black">
+      <div className="h-[720px] relative bg-gradient-to-t from-black/20 via-transparent to-black">
         {data ? (
           <ReactPlayer
             width={"100%"}
-            className="  [&_video]:object-cover [&_.ytp-show-cards-title]:hidden bg-black"
+            className="  [&_video]:object-cover [&_.ytp-show-cards-title]:hidden bg-black pointer-events-none cursor-none"
             height="100%"
-            url={`https://www.youtube.com/watch?v=${props.videos.results[0].key}`}
+            url={`https://www.youtube.com/watch?v=${props.data.videos.results[0].key}`}
             controls
             loop
             volume={1}
@@ -64,9 +64,8 @@ console.log(props);
             alt={data?.title ? data.title : data.name}
           />
         )}
-        <div></div>
-
-        <div className="controller absolute top-[50%] px-10  text-white w-full mx-auto bg-gradient-to-t from-black/50 via-transparent to-black/10">
+        <div className=" w-full mx-auto absolute top-[50%] z-20  text-white  bg-gradient-to-t from-black/95 via-transparent to-black/10 shadow-black shadow-2xl">
+        <div className=" text-white controller px-10 ">
           <div className=" text-2xl">
             <span>{data?.title ? data.title : data.name}</span>
           </div>
@@ -90,13 +89,18 @@ console.log(props);
             </div>
           </div>
         </div>
-        <div className="closeIcon">
-          <IconButton onClick={props.handleClose} >
+        <Details data={props.data} credits={props.credits} />
+        </div>
+
+      
+       
+       
+      </div>
+      <div className=" absolute top-0 -right-20 z-50">
+          <IconButton onClick={props.handleClose} className=" color-white" >
             <Close />
           </IconButton>
         </div>
-        <Details data={props.data} />
-      </div>
     </div>
   );
 };

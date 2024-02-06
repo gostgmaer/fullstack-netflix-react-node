@@ -217,13 +217,7 @@ const getMovieDetails = async (id) => {
     `/movie/${id}/credits`,
     { params: paramscredits }
   );
-  const videos = await servermovieApi(
-    `/movie/${id}/videos`,
-    { params: paramscredits }
-  );
-  // const 
 
-
-  // console.log(similar);
-  return { details, similar, credits, videos }
+ 
+  return { details, similar, credits }
 }

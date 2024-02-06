@@ -30,8 +30,8 @@ export default function ModalDialog({ children, isOpen, setIsOpen, params = { he
                 <div className="fixed inset-0 bg-black/75" />
 
                 <div className="fixed inset-0 overflow-y-auto">
-                    <div className="flex min-h-full items-center justify-center p-4 text-center">
-                        <Dialog.Panel className="w-full max-w-5xl transform overflow-hidden rounded-2xl bg-white p-4 text-left align-middle shadow-xl transition-all">
+                    <div className={`flex min-h-full items-center justify-center p-4 text-center rounded-md`}>
+                        <Dialog.Panel className={`w-full max-w-5xl transform overflow-hidden rounded-2xl bg-white ${ params.ispadding? 'p-4':''} text-left align-middle shadow-xl transition-all`}>
                             {params.heading && <Dialog.Title
                                 as="div"
                                 className={`text-lg font-medium leading-6 text-gray-900 flex w-full items-center ${params.isclose ? 'justify-between' : 'justify-center'} `}
